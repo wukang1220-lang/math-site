@@ -298,7 +298,7 @@ const esc = s => String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':
 const strip = s => String(s).replace(/<[^>]+>/g, '');
 
 /* ---------- state ---------- */
-const KEY = 'mathGrid.v1', ROUND = 8;
+const KEY = 'mathGrid.v1', ROUND = 6;
 let st = {first:{}, wrong:{}, cor:{}, done:{}, best:{}, round:{}, fz:0};
 try { const raw = localStorage.getItem(KEY); if (raw) st = Object.assign(st, JSON.parse(raw)); } catch (e) {}
 if (st.ans) { for (const id in st.ans) if (st.ans[id] && st.ans[id].ok) st.cor[id] = 1; delete st.ans; }
@@ -348,7 +348,7 @@ function home(){
   <div class="hero"><div class="eyebrow">國中數學 ・ 108 課綱 ・ 對照翰林、康軒、南一</div><h1>數學方格簿</h1>
   <p class="lead">七到九年級共 6 冊、24 章、${total} 個單元。每個單元有重點整理、圖解或互動工具、例題和練習題，並標出這個單元在 106–115 年會考出現過幾題。</p></div>
   <div class="card stack" style="gap:10px"><div class="blk-h" style="margin:0"><h2>我的進度</h2><span class="muted small">存在這台裝置的瀏覽器</span></div>
-  <p>完成 <b class="num">${doneN}</b> / ${written} 個單元（隨機 8 題全對才算完成）；題庫 ${qAll} 題中答對過 <b class="num">${qOk}</b> 題。${Object.keys(st.wrong).length ? `錯題本還有 <a href="#wrong">${Object.keys(st.wrong).length} 題</a>。` : ''}</p></div>
+  <p>完成 <b class="num">${doneN}</b> / ${written} 個單元（隨機抽的一輪題目全對才算完成）；題庫 ${qAll} 題中答對過 <b class="num">${qOk}</b> 題。${Object.keys(st.wrong).length ? `錯題本還有 <a href="#wrong">${Object.keys(st.wrong).length} 題</a>。` : ''}</p></div>
   <div class="card stack" style="gap:8px"><h2>會考十年出題比例</h2><p class="muted small">106–115 年正式會考 275 題，依 108 課綱主題歸類。顏色也標在每一章前面。</p>${strandBar()}</div>
   ${grade('七', 1)}${grade('八', 3)}${grade('九', 5)}
   <div class="foot"><p>內容依 108 課綱與三家出版社的章節順序整理，文字、例題與練習題皆為本站自編。會考題號可到國中教育會考網站查詢原題。</p><p>答題紀錄只存在這台裝置的瀏覽器，清除瀏覽資料會一併清除。</p></div>
@@ -375,7 +375,7 @@ function fbHTML(q, ok, perm){ return ok ? `<b>${CHEER[Math.floor(Math.random() *
 function quizHTML(k){
   const {r, done, ok, all} = roundStat(k), d = C[k];
   return `<div class="blk-h"><h2>練習</h2><span class="muted small">題庫 ${d.qs.length} 題，每次隨機抽 ${all} 題</span><button class="btn" type="button" data-act="new" style="margin-left:auto">換一組題目</button></div>
-  <div class="qbar"><span id="qprog">${progText(done, ok, all)}</span>${isDone(k) ? '<span class="chip okchip">✓ 曾經 8 題全對</span>' : ''}</div>
+  <div class="qbar"><span id="qprog">${progText(done, ok, all)}</span>${isDone(k) ? '<span class="chip okchip">✓ 曾經整輪全對</span>' : ''}</div>
   <div class="stack" style="gap:12px">${r.q.map((i, j) => qHTML(k, i, d.qs[i], j + 1, r.p[i], r.a[i], 'r')).join('')}</div>
   <div id="qsum">${done === all ? sumHTML(ok, all) : ''}</div>`;
 }

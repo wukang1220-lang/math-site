@@ -211,13 +211,16 @@ def main():
     struct = json.load(open(os.path.join(HERE, 'structure.json'), encoding='utf-8'))
     known = {s['k'] for b in struct for c in b['chs'] for s in c['secs']}
     content = {}
-    for name in [f'b{b}.txt' for b in range(1, 7)] + [f'q{b}.txt' for b in range(1, 7)]:
+    for name in [f'{p}{b}.txt' for p in 'bqe' for b in range(1, 7)]:
         p = os.path.join(HERE, 'content', name)
         if os.path.exists(p):
             parse(p, known, content)
     short = [k for k in sorted(content) if len(content[k]['qs']) != 15]
     if short:
         print('sections without exactly 15 questions:', len(short), ' '.join(f'{k}({len(content[k]["qs"])})' for k in short[:12]))
+    fewex = [f'{k}({len(content[k]["ex"])})' for k in sorted(content) if not 2 <= len(content[k]['ex']) <= 3]
+    if fewex:
+        print('sections without 2–3 examples:', len(fewex), ' '.join(fewex[:12]))
     dup = [(k, i) for k in content for i, q in enumerate(content[k]['qs']) if [x['q'] for x in content[k]['qs']].index(q['q']) != i]
     if dup:
         sys.exit(f'duplicate question stems: {dup}')
