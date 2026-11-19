@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 218" role="img">
+  <title>平行線截比例線段</title>
+  <polygon points="150,27 54,147 306,147" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <line x1="86" y1="107" x2="254" y2="107" stroke="var(--ic)" stroke-width="2.8" stroke-linecap="round"/>
+  <circle cx="150" cy="27" r="2.5" fill="var(--fig-ink)"/>
+  <circle cx="54" cy="147" r="2.5" fill="var(--fig-ink)"/>
+  <circle cx="306" cy="147" r="2.5" fill="var(--fig-ink)"/>
+  <circle cx="86" cy="107" r="2.5" fill="var(--fig-ink)"/>
+  <circle cx="254" cy="107" r="2.5" fill="var(--fig-ink)"/>
+  <text x="150" y="18" font-size="13" text-anchor="middle" fill="var(--fig-ink)">A</text>
+  <text x="43" y="154" font-size="13" text-anchor="middle" fill="var(--fig-ink)">B</text>
+  <text x="318" y="154" font-size="13" text-anchor="middle" fill="var(--fig-ink)">C</text>
+  <text x="74" y="108" font-size="13" text-anchor="middle" fill="var(--fig-ink)">D</text>
+  <text x="269" y="108" font-size="13" text-anchor="middle" fill="var(--fig-ink)">E</text>
+  <text x="180" y="171" font-size="13" text-anchor="middle" fill="var(--fig-ink)">DE ∥ BC</text>
+  <text x="180" y="189" font-size="13" text-anchor="middle" fill="var(--fig-ink)">AD : DB = AE : EC</text>
+  <text x="180" y="207" font-size="13" text-anchor="middle" fill="var(--fig-ink)">AD : AB = AE : AC = DE : BC</text>
+</svg>

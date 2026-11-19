@@ -1,0 +1,1026 @@
+<title>數學方格簿</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif:ital@1&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: graph-paper notebook. Sticky top bar, one reading column (max 860px); section pages read top→bottom: 重點 → 圖解 → 動手試 → 例題 → 練習 */
+:root{
+  --bg:#f3f6f5; --paper:#fcfdfc; --ink:#15201f; --ink-2:#465452; --muted:#6f7c7a; --line:#d9e2e0;
+  --grid:rgba(15,82,87,.075); --accent:#0f5257; --accent-soft:#e2eeed; --kw:#c0281f;
+  --ok:#1b7a3a; --ok-soft:#e3f3e8; --bad:#b4232c; --bad-soft:#fbe7e7;
+  --s-N:#2a78d6; --s-A:#eb6834; --s-G:#1baf7a; --s-D:#eda100; --p1:#2a78d6; --p2:#eb6834;
+  --fig-ink:var(--ink); --fig-soft:var(--muted); --fig-line:var(--line); --fig-paper:var(--paper);
+  --ic:#e8590c; --fig-a:#dceafb; --fig-b:#ffe6d2; --fig-c:#d6f2e2;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-var:"Noto Serif","Cambria","Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --fz:16px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1413; --paper:#161d1c; --ink:#e9efee; --ink-2:#b5c1bf; --muted:#8a9694; --line:#2a3432;
+  --grid:rgba(124,200,204,.06); --accent:#7cc8cc; --accent-soft:#1a2a2a; --kw:#ff8a7a;
+  --ok:#5fd18a; --ok-soft:#173523; --bad:#ff8a8a; --bad-soft:#3a1b1d;
+  --s-N:#3987e5; --s-A:#d95926; --s-G:#199e70; --s-D:#c98500; --p1:#3987e5; --p2:#d95926;
+  --ic:#ff922b; --fig-a:#1d3554; --fig-b:#4d2e17; --fig-c:#1b4230; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1413; --paper:#161d1c; --ink:#e9efee; --ink-2:#b5c1bf; --muted:#8a9694; --line:#2a3432;
+  --grid:rgba(124,200,204,.06); --accent:#7cc8cc; --accent-soft:#1a2a2a; --kw:#ff8a7a;
+  --ok:#5fd18a; --ok-soft:#173523; --bad:#ff8a8a; --bad-soft:#3a1b1d;
+  --s-N:#3987e5; --s-A:#d95926; --s-G:#199e70; --s-D:#c98500; --p1:#3987e5; --p2:#d95926;
+  --ic:#ff922b; --fig-a:#1d3554; --fig-b:#4d2e17; --fig-c:#1b4230; color-scheme:dark}
+html.fz1{--fz:18px} html.fz2{--fz:20px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:var(--fz);line-height:1.8;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+a{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--paper);border-bottom:1px solid var(--line);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top-in{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:6px 14px;min-height:54px;flex-wrap:wrap;padding-block:6px}
+.brand{font-weight:700;font-size:1.1rem;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px;margin-right:auto}
+.brand i{display:inline-block;width:22px;height:22px;border:2px solid var(--accent);border-radius:4px;
+  background-image:linear-gradient(var(--accent) 1px,transparent 1px),linear-gradient(90deg,var(--accent) 1px,transparent 1px);background-size:6px 6px;background-position:2px 2px;opacity:.85}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.nav a,.nav button{border:1px solid transparent;background:none;border-radius:6px;padding:3px 10px;text-decoration:none;color:var(--ink-2);cursor:pointer;font-size:.92rem}
+.nav a:hover,.nav button:hover{background:var(--accent-soft)}
+.nav a.on{border-color:var(--accent);color:var(--accent);font-weight:500}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 72px}
+.col{max-width:860px}
+h1,h2,h3{line-height:1.35;text-wrap:balance;margin:0}
+h1{font-size:clamp(1.6rem,4vw,2.2rem)} h2{font-size:1.3rem} h3{font-size:1.08rem}
+p{margin:0}
+.muted{color:var(--muted)} .small{font-size:.86rem}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:18px}
+.stack{display:grid;gap:18px}
+.eyebrow{font-size:.8rem;letter-spacing:.1em;color:var(--accent);font-weight:500}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;border:1px solid var(--line);border-radius:999px;padding:1px 10px;color:var(--ink-2);background:var(--paper)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:3px;flex:none}
+.st-N{background:var(--s-N)}.st-A{background:var(--s-A)}.st-G{background:var(--s-G)}.st-D{background:var(--s-D)}
+.stars{color:var(--ic);letter-spacing:1px;font-size:.85rem}
+.stars b{color:var(--line);font-weight:400}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+/* math markup */
+i{font-family:var(--f-var);font-style:italic;font-size:1.04em;padding:0 .04em}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.88em;line-height:1.15;margin:0 .15em}
+.fr>span:first-child{border-bottom:1px solid currentColor;padding:0 .2em}
+.fr>span:last-child{padding:0 .2em}
+.rt{white-space:nowrap}.rt>span{border-top:1px solid currentColor;padding:0 .1em;margin-left:.05em}
+.seg,.arc{position:relative;display:inline-block;padding-top:.15em}
+.seg{border-top:1px solid currentColor;line-height:1.2}
+.arc::before{content:"⌒";position:absolute;left:0;right:0;top:-.72em;text-align:center;font-size:.9em;line-height:1}
+.sys{display:inline-flex;align-items:center;vertical-align:middle;margin:0 .2em}
+.sys::before{content:"";width:.45em;align-self:stretch;border:1.5px solid currentColor;border-right:0;border-radius:.45em 0 0 .45em;margin-right:.3em}
+.eqs{display:inline-flex;flex-direction:column;line-height:1.45}
+sup,sub{font-size:.72em;line-height:0}
+.kw{color:var(--kw);font-weight:700}
+/* home */
+.hero{display:grid;gap:10px;padding-block:8px 6px}
+.lead{color:var(--ink-2);max-width:44em}
+.bar4{display:flex;gap:2px;height:14px;border-radius:4px;overflow:hidden}
+.legend4{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:.86rem;color:var(--ink-2)}
+.legend4 span{display:inline-flex;align-items:center;gap:6px}
+.grade{display:grid;gap:12px}
+.sems{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.sem h3{display:flex;align-items:baseline;gap:10px}
+.sem h3 a{text-decoration:none;color:var(--ink)}
+.chl{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:2px}
+.chl li a{display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:center;padding:6px 8px;border-radius:6px;text-decoration:none;color:var(--ink)}
+.chl li a:hover{background:var(--accent-soft)}
+.pbar{height:4px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:4px}
+.pbar i{display:block;height:100%;background:var(--ok);padding:0;font-size:0}
+/* book */
+.chapter{display:grid;gap:10px}
+.pubs{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.84rem;color:var(--muted)}
+.secl{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.secl a{display:grid;gap:2px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper);text-decoration:none;color:var(--ink)}
+.secl a:hover{border-color:var(--accent)}
+.secl .no{font-family:var(--f-mono);color:var(--muted);font-size:.82rem}
+.secl .meta{display:flex;justify-content:space-between;gap:8px;font-size:.82rem;color:var(--muted)}
+.done{color:var(--ok);font-weight:700}
+/* section */
+.crumb{font-size:.86rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 8px}
+.crumb a{color:var(--muted)}
+.shead{display:grid;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+details.capd summary{cursor:pointer;color:var(--ink-2);font-size:.88rem}
+.capids{font-family:var(--f-mono);font-size:.82rem;color:var(--muted);margin-top:4px;word-break:break-word}
+.rows{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper)}
+.row{display:grid;grid-template-columns:9.5em 1fr;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row .lab{background:var(--accent-soft);padding:12px 14px;font-weight:700;color:var(--accent);display:flex;align-items:center}
+.row .body{padding:10px 16px;min-width:0}
+.row ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+.tip{margin-top:8px;font-size:.92em;color:var(--ink-2);background:var(--bg);border-radius:6px;padding:6px 10px}
+.tip::before{content:"小叮嚀";font-weight:700;color:var(--accent);margin-right:8px;font-size:.85em}
+@media (max-width:620px){.row{grid-template-columns:1fr}.row .lab{padding:8px 14px}}
+.figs{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.fig{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px}
+.fig svg{display:block;width:100%;height:auto;max-width:640px;margin:0 auto}
+.fig svg text{font-family:var(--f-body)}
+.blk-h{display:flex;align-items:baseline;gap:10px;margin-bottom:10px}
+.blk-h h2{font-size:1.15rem}
+.ex{border-left:3px solid var(--accent);padding:6px 0 6px 14px;display:grid;gap:6px}
+.ex+.ex{margin-top:14px}
+.ex .sol{color:var(--ink-2)}
+.ex details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
+.ex ol{margin:6px 0 0;padding-left:1.4em}
+.q{border:1px solid var(--line);border-radius:8px;padding:14px;background:var(--paper);display:grid;gap:10px}
+.q .qn{font-family:var(--f-mono);color:var(--muted);margin-right:6px}
+.opts{display:grid;gap:8px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:560px){.opts{grid-template-columns:1fr}}
+.opts button{text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:7px 12px;cursor:pointer;display:flex;gap:8px;align-items:baseline}
+.opts button:hover{border-color:var(--accent)}
+.opts button .L{font-family:var(--f-mono);color:var(--muted)}
+.opts button.ok{border-color:var(--ok);background:var(--ok-soft)}
+.opts button.no{border-color:var(--bad);background:var(--bad-soft)}
+.fb{border-radius:6px;padding:8px 12px;font-size:.95em}
+.fb.ok{background:var(--ok-soft)} .fb.no{background:var(--bad-soft)}
+.fb b{margin-right:6px}
+.pager{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pager a{border:1px solid var(--line);border-radius:8px;padding:8px 14px;background:var(--paper);text-decoration:none;max-width:48%}
+.btn{border:1px solid var(--line);background:var(--paper);border-radius:6px;padding:4px 12px;cursor:pointer;font-size:.9rem}
+.btn:hover{border-color:var(--accent)}
+.empty{color:var(--muted);font-style:normal}
+/* widgets */
+.tool{display:grid;gap:12px}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:.92rem}
+.ctrl label{display:inline-flex;align-items:center;gap:6px}
+.ctrl input[type=number],.ctrl input[type=text]{width:6.5em;padding:3px 6px;border:1px solid var(--line);border-radius:5px;background:var(--bg)}
+.ctrl input[type=range]{width:150px;accent-color:var(--accent)}
+.ctrl select{padding:3px 6px;border:1px solid var(--line);border-radius:5px;background:var(--bg)}
+.ctrl textarea{width:100%;min-height:3.2em;padding:6px;border:1px solid var(--line);border-radius:5px;background:var(--bg)}
+.out{background:var(--bg);border-radius:6px;padding:8px 12px;font-size:.95em;display:grid;gap:2px}
+.plot{width:100%;max-width:420px;height:auto;display:block;touch-action:manipulation}
+.plot text{font-family:var(--f-mono);font-size:10px;fill:var(--muted)}
+.plot .lbl{font-family:var(--f-body);font-size:12px;fill:var(--ink)}
+/* search & wrong book */
+.search{position:relative}
+.search input{width:11em;border:1px solid var(--line);border-radius:6px;padding:3px 10px;background:var(--bg)}
+.sres{position:absolute;right:0;top:calc(100% + 6px);width:min(340px,86vw);max-height:60vh;overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.12);padding:6px;z-index:20}
+.sres a{display:block;padding:6px 8px;border-radius:6px;text-decoration:none;color:var(--ink)}
+.sres a:hover,.sres a:focus{background:var(--accent-soft)}
+.sres small{display:block;color:var(--muted)}
+@media (max-width:700px){.top{position:static}.nav{flex-wrap:nowrap;overflow-x:auto;width:100%}.nav a,.nav button{white-space:nowrap}.search,.search input{width:100%}.brand{margin-right:0}}
+.foot{margin-top:40px;font-size:.84rem;color:var(--muted);display:grid;gap:4px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* ===== two-column layout ===== */
+:root{--hero:#e4f0ef;--on-accent:#ffffff;--r-lg:18px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--hero:#14292a;--on-accent:#0e1413}}
+:root[data-theme="dark"]{--hero:#14292a;--on-accent:#0e1413}
+.top-in{max-width:1320px;gap:8px 12px}
+.brand span{display:grid;line-height:1.25}
+.brand small{font-size:.72rem;color:var(--accent);font-weight:500}
+.pill{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:5px 12px;cursor:pointer;font-size:.9rem;text-decoration:none;color:var(--ink-2);white-space:nowrap}
+.pill:hover{border-color:var(--accent)}
+.pill-ok{background:var(--ok-soft);border-color:transparent;color:var(--ok);font-weight:700}
+.page{max-width:1320px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 72px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tabs a,.tabs button{border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:7px 16px;text-decoration:none;color:var(--ink);font-weight:500;cursor:pointer}
+.tabs a:hover,.tabs button:hover{border-color:var(--accent)}
+.tabs a.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+#sideBtn{display:none}
+.layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:28px;align-items:start}
+#main{min-width:0}
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px);max-height:calc(100vh - 100px);overflow:auto;overscroll-behavior:contain}
+.side-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 14px}
+.side-h{display:flex;align-items:center;gap:10px;margin:0 6px 12px}
+.side-h h2{font-size:1.15rem}
+.grid-ic{width:18px;height:18px;flex:none;border:1.5px solid var(--accent);border-radius:3px;background-image:linear-gradient(var(--accent) 1px,transparent 1px),linear-gradient(90deg,var(--accent) 1px,transparent 1px);background-size:5px 5px;background-position:1px 1px;opacity:.85}
+.gseg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--bg);border-radius:12px;padding:4px}
+.gseg button{border:0;background:none;border-radius:9px;padding:7px 0;cursor:pointer;color:var(--ink-2);font-weight:500}
+.gseg button.on{background:var(--accent);color:var(--on-accent)}
+.side-sub{font-size:.86rem;color:var(--ink-2);font-weight:700;margin:16px 8px 4px}
+.chs{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.chs .semh{font-size:.76rem;color:var(--muted);letter-spacing:.08em;margin:10px 8px 2px}
+.ch{display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:12px;text-decoration:none;color:var(--ink);font-weight:500}
+.ch .n{width:26px;height:26px;border-radius:8px;background:var(--bg);display:grid;place-items:center;font-family:var(--f-mono);font-size:.82rem;color:var(--ink-2);flex:none}
+.ch .t{min-width:0}
+.ch:hover{background:var(--accent-soft)}
+.ch.on{background:var(--accent-soft)}
+.ch.on .n{background:var(--accent);color:var(--on-accent)}
+.secs{list-style:none;margin:2px 0 6px 21px;padding:0 0 0 10px;border-left:2px solid var(--line);display:grid;gap:1px}
+.secs a{display:flex;gap:6px;padding:6px 10px;border-radius:9px;text-decoration:none;color:var(--ink-2);font-size:.92rem}
+.secs a:hover{background:var(--bg)}
+.secs a.on{background:var(--accent-soft);color:var(--ink);font-weight:700}
+.ok{color:var(--ok);font-weight:700;margin-left:auto}
+.crumb a{text-decoration:none}
+.hero2{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(220px,1fr);gap:22px;align-items:center;border:1px solid var(--line);border-radius:var(--r-lg);padding:30px;
+  background-color:var(--hero);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:20px 20px;background-position:right top}
+.hero-l{display:grid;gap:8px;min-width:0}
+.hero2 h1{font-size:clamp(1.9rem,4.2vw,2.8rem);letter-spacing:.03em}
+.codes{font-family:var(--f-mono);color:var(--ink-2);font-size:.86rem;align-self:center}
+.secno{color:var(--ink-2);font-size:.92rem}
+.sum{font-size:1.04rem;color:var(--ink)}
+.exam{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:grid;gap:6px;box-shadow:0 8px 24px rgba(15,82,87,.08)}
+.exam-l{font-size:.82rem;color:var(--muted);letter-spacing:.06em}
+.exam-n{font-size:1rem}
+.exam-n b{font-family:var(--f-mono);font-size:2.6rem;line-height:1;margin-right:4px}
+.pubs{font-size:.86rem;color:var(--muted);margin-top:-6px}
+.blk{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px}
+.blk>.blk-h h2{font-size:1.2rem}
+.blk .ex{border-left:3px solid var(--accent)}
+.blk-tool{background:var(--paper)}
+.fig{position:relative;margin:0;padding:12px}
+.zoom{position:absolute;top:8px;right:8px;font-size:.8rem;padding:2px 10px;z-index:1}
+.q{background:var(--bg)}
+.opts button{background:var(--paper)}
+.modal{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.55);display:grid;place-items:center;padding:16px}
+.modal[hidden]{display:none}
+.modal-in{background:var(--paper);border-radius:16px;padding:16px;width:min(980px,100%);max-height:100%;overflow:auto;display:grid;gap:10px}
+.modal-h{display:flex;justify-content:space-between;align-items:center}
+#figBig svg{display:block;width:100%;height:auto}
+#figBig svg text{font-family:var(--f-body)}
+#sideBack{display:none}
+@media (max-width:960px){
+  .layout{grid-template-columns:1fr}
+  .side{position:fixed;top:0;bottom:0;left:0;width:min(330px,88vw);max-height:none;z-index:30;transform:translateX(-105%);transition:transform .2s ease;background:var(--bg);
+    padding:calc(env(safe-area-inset-top,0px) + 12px) 12px calc(env(safe-area-inset-bottom,0px) + 12px) max(12px,env(safe-area-inset-left,0px))}
+  body.side-open .side{transform:none;box-shadow:8px 0 30px rgba(0,0,0,.2)}
+  body.side-open #sideBack{display:block;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:25}
+  #sideBtn{display:inline-flex}
+  #mapTab{display:none}
+  .hero2{grid-template-columns:1fr;padding:22px}
+}
+@media (max-width:700px){.top-in{display:grid;grid-template-columns:1fr auto auto}.top-in .search{grid-column:1 / -1;grid-row:2}.blk{padding:16px}.hero2{padding:18px}}
+/* ===== quiz rounds & petals ===== */
+.qbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:-2px 0 12px;font-size:.92rem;color:var(--ink-2)}
+.okchip{border-color:transparent;background:var(--ok-soft);color:var(--ok);font-weight:700}
+.opts button:disabled{cursor:default;opacity:1;color:inherit}
+.opts button.ans{border-color:var(--ok);border-style:dashed}
+.q.locked .opts button:not(.ok):not(.no):not(.ans){opacity:.6}
+.qsum{margin-top:14px;border-radius:14px;padding:14px 16px;background:var(--bg);display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}
+.qsum b{font-size:1.1rem}
+.qsum.win{background:var(--ok-soft)}
+.qsum.win b{color:var(--ok);font-size:1.3rem}
+.qsum .btn{margin-left:auto}
+#petalCv{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:60}
+#toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 28px);transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:61;
+  background:var(--ok);color:var(--on-accent);font-weight:700;font-size:1.15rem;padding:12px 24px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:opacity .25s,transform .25s}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#toast.big{bottom:auto;top:38%;white-space:nowrap;font-size:clamp(1.5rem,5vw,2.2rem);padding:18px 34px;border-radius:24px;transform:translate(-50%,-50%) scale(.8)}
+#toast.big.on{transform:translate(-50%,-50%) scale(1)}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#home"><i></i><span>數學方格簿<small>國中數學 七・八・九年級</small></span></a>
+    <div class="search"><input id="q" type="search" placeholder="搜尋單元或名詞" aria-label="搜尋單元或名詞" autocomplete="off"><div class="sres" id="sres" hidden></div></div>
+    <button id="fzBtn" class="pill" type="button" title="切換字級">字級：標準</button>
+    <a class="pill pill-ok" href="#home">我的進度</a>
+  </div>
+</header>
+<div class="page">
+  <nav class="tabs" id="tabs" aria-label="主要頁面">
+    <button id="sideBtn" type="button" aria-controls="side" aria-expanded="false">☰ 課程地圖</button>
+    <a id="mapTab" href="#s1-1-1" data-n="map">課程地圖</a><a href="#home" data-n="home">會考重點</a><a href="#wrong" data-n="wrong">錯題本</a>
+  </nav>
+  <div class="layout">
+    <aside class="side" id="side" aria-label="課程地圖"></aside>
+    <main id="main"></main>
+  </div>
+</div>
+<div id="sideBack"></div>
+<div class="modal" id="figModal" hidden><div class="modal-in" role="dialog" aria-modal="true" aria-label="放大圖解"><div class="modal-h"><b>放大圖解</b><button class="btn" type="button" id="figClose">關閉</button></div><div id="figBig"></div></div></div>
+
+<script>
+const DATA = /*DATA*/null;
+const SEM = ['', '七上', '七下', '八上', '八下', '九上', '九下'];
+const SNAME = {N:'數與量', A:'代數與函數', G:'幾何', D:'統計與機率'};
+const L4 = ['A','B','C','D'];
+const SECS = [], BYK = {};
+DATA.books.forEach(b => b.chs.forEach(c => c.secs.forEach(s => { const o = {...s, b, c}; o.i = SECS.length; SECS.push(o); BYK[s.k] = o; })));
+const C = DATA.c;
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const strip = s => String(s).replace(/<[^>]+>/g, '');
+
+/* ---------- state ---------- */
+const KEY = 'mathGrid.v1', ROUND = 8;
+let st = {first:{}, wrong:{}, cor:{}, done:{}, best:{}, round:{}, fz:0};
+try { const raw = localStorage.getItem(KEY); if (raw) st = Object.assign(st, JSON.parse(raw)); } catch (e) {}
+if (st.ans) { for (const id in st.ans) if (st.ans[id] && st.ans[id].ok) st.cor[id] = 1; delete st.ans; }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
+function qcount(k){ return C[k] ? C[k].qs.length : 0; }
+function okCount(k){ let n = 0; for (let i = 0; i < qcount(k); i++) if (st.cor[k + '.' + i]) n++; return n; }
+function isDone(k){ return !!st.done[k]; }
+function shuffle(a){ for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function newRound(k){
+  const n = qcount(k), pick = shuffle([...Array(n).keys()]).slice(0, Math.min(ROUND, n)), p = {};
+  pick.forEach(i => { p[i] = shuffle([...Array(C[k].qs[i].o.length).keys()]); });
+  return (st.round[k] = {q: pick, p, a: {}});
+}
+function getRound(k){
+  const r = st.round[k], n = qcount(k);
+  if (!r || !Array.isArray(r.q) || r.q.length !== Math.min(ROUND, n) || r.q.some(i => i >= n || !r.p[i])) { newRound(k); save(); }
+  return st.round[k];
+}
+function roundStat(k){ const r = getRound(k), done = r.q.filter(i => r.a[i]).length, ok = r.q.filter(i => r.a[i] && r.a[i].ok).length; return {r, done, ok, all: r.q.length}; }
+function starHTML(n){ return '<span class="stars" title="會考重要度（依 106–115 年題數）">' + '★'.repeat(n) + '<b>' + '★'.repeat(5 - n) + '</b></span>'; }
+
+/* ---------- font size ---------- */
+const FZ = ['標準','大','特大'];
+function applyFz(){ document.documentElement.classList.remove('fz1','fz2'); if (st.fz) document.documentElement.classList.add('fz' + st.fz); $('#fzBtn').textContent = '字級：' + FZ[st.fz]; }
+$('#fzBtn').addEventListener('click', () => { st.fz = (st.fz + 1) % 3; save(); applyFz(); });
+applyFz();
+
+/* ---------- views ---------- */
+function strandBar(){
+  const t = Object.values(DATA.strand).reduce((a, v) => a + v[0], 0);
+  const order = ['N','A','G','D'];
+  return `<div class="bar4" role="img" aria-label="會考十年各類題數比例">${order.map(k => `<div class="st-${k}" style="flex:${DATA.strand[k][0]}"></div>`).join('')}</div>
+  <div class="legend4">${order.map(k => `<span><i class="dot st-${k}" style="padding:0"></i>${SNAME[k]} ${(100 * DATA.strand[k][0] / t).toFixed(1)}%</span>`).join('')}</div>`;
+}
+function home(){
+  const total = SECS.length, written = SECS.filter(s => C[s.k]).length;
+  const doneN = SECS.filter(s => isDone(s.k)).length;
+  const qAll = SECS.reduce((a, s) => a + qcount(s.k), 0), qOk = SECS.reduce((a, s) => a + okCount(s.k), 0);
+  const grade = (g, b1) => `<section class="grade"><h2>${g}年級</h2><div class="sems">${[b1, b1 + 1].map(b => {
+    const B = DATA.books[b - 1];
+    return `<div class="card sem"><h3><a href="#b${b}">${B.sem}</a><span class="muted small">${B.vol}</span></h3><ul class="chl">${B.chs.map(c => {
+      const ks = c.secs.map(s => s.k), d = ks.filter(isDone).length;
+      return `<li><a href="#s${c.secs[0].k}"><i class="dot st-${c.st}" style="padding:0"></i><span>第 ${c.no} 章 ${esc(c.pub[0])}<div class="pbar"><i style="width:${100 * d / ks.length}%"></i></div></span><span class="small muted">會考 ${c.n} 題</span></a></li>`;
+    }).join('')}</ul></div>`;
+  }).join('')}</div></section>`;
+  return `<div class="stack">
+  <div class="hero"><div class="eyebrow">國中數學 ・ 108 課綱 ・ 對照翰林、康軒、南一</div><h1>數學方格簿</h1>
+  <p class="lead">七到九年級共 6 冊、24 章、${total} 個單元。每個單元有重點整理、圖解或互動工具、例題和練習題，並標出這個單元在 106–115 年會考出現過幾題。</p></div>
+  <div class="card stack" style="gap:10px"><div class="blk-h" style="margin:0"><h2>我的進度</h2><span class="muted small">存在這台裝置的瀏覽器</span></div>
+  <p>完成 <b class="num">${doneN}</b> / ${written} 個單元（隨機 8 題全對才算完成）；題庫 ${qAll} 題中答對過 <b class="num">${qOk}</b> 題。${Object.keys(st.wrong).length ? `錯題本還有 <a href="#wrong">${Object.keys(st.wrong).length} 題</a>。` : ''}</p></div>
+  <div class="card stack" style="gap:8px"><h2>會考十年出題比例</h2><p class="muted small">106–115 年正式會考 275 題，依 108 課綱主題歸類。顏色也標在每一章前面。</p>${strandBar()}</div>
+  ${grade('七', 1)}${grade('八', 3)}${grade('九', 5)}
+  <div class="foot"><p>內容依 108 課綱與三家出版社的章節順序整理，文字、例題與練習題皆為本站自編。會考題號可到國中教育會考網站查詢原題。</p><p>答題紀錄只存在這台裝置的瀏覽器，清除瀏覽資料會一併清除。</p></div>
+  </div>`;
+}
+function book(b){
+  const B = DATA.books[b - 1];
+  return `<div class="stack"><div class="crumb"><a href="#home">首頁</a><span>›</span><span>${B.sem}（${B.vol}）</span></div>
+  <h1>${B.sem}・${B.vol}</h1>
+  ${B.chs.map(c => `<section class="chapter card"><div><div class="eyebrow">第 ${c.no} 章 ・ ${SNAME[c.st]}</div><h2>${esc(c.pub[0])}</h2></div>
+    <div class="pubs"><span>翰林：${esc(c.pub[0])}</span><span>康軒：${esc(c.pub[1])}</span><span>南一：${esc(c.pub[2])}</span><span>會考 10 年 ${c.n} 題</span></div>
+    <div class="secl">${c.secs.map(s => `<a href="#s${s.k}"><span class="no">${s.no || '第 ' + c.no + ' 章'}</span><b>${esc(s.t)}</b><span class="meta"><span>${starHTML(s.imp)}</span><span>${isDone(s.k) ? '<span class="done">✓ 完成</span>' : C[s.k] ? '答對過 ' + okCount(s.k) + ' / ' + qcount(s.k) + ' 題' : '整理中'}</span></span></a>`).join('')}</div>
+  </section>`).join('')}
+  <div class="pager">${b > 1 ? `<a href="#b${b - 1}">← ${SEM[b - 1]}</a>` : '<span></span>'}${b < 6 ? `<a href="#b${b + 1}">${SEM[b + 1]} →</a>` : ''}</div></div>`;
+}
+const CHEER = ['答對了！', '太棒了！', '好厲害！', '完全正確！', '漂亮！', '繼續保持！'];
+function qHTML(k, i, q, n, perm, a, mode){
+  const id = k + '.' + i, disp = perm.map(o => o);
+  return `<div class="q${a ? ' locked' : ''}" data-q="${id}" data-m="${mode}" data-p="${perm.join('')}"><p><span class="qn">${n}.</span>${q.q}</p>
+  <div class="opts">${disp.map((o, j) => `<button type="button" data-i="${o}"${a ? ' disabled' : ''} class="${a ? (o === a.c ? (a.ok ? 'ok' : 'no') : (!a.ok && o === q.a ? 'ans' : '')) : ''}"><span class="L">(${L4[j]})</span><span>${q.o[o]}</span></button>`).join('')}</div>
+  <div class="fb${a ? (a.ok ? ' ok' : ' no') : ''}"${a ? '' : ' hidden'}>${a ? fbHTML(q, a.ok, perm) : ''}</div></div>`;
+}
+function fbHTML(q, ok, perm){ return ok ? `<b>${CHEER[Math.floor(Math.random() * CHEER.length)]}</b>${q.e}` : `<b>再想想。</b>正確答案是 (${L4[perm.indexOf(q.a)]})。${q.e}`; }
+function quizHTML(k){
+  const {r, done, ok, all} = roundStat(k), d = C[k];
+  return `<div class="blk-h"><h2>練習</h2><span class="muted small">題庫 ${d.qs.length} 題，每次隨機抽 ${all} 題</span><button class="btn" type="button" data-act="new" style="margin-left:auto">換一組題目</button></div>
+  <div class="qbar"><span id="qprog">${progText(done, ok, all)}</span>${isDone(k) ? '<span class="chip okchip">✓ 曾經 8 題全對</span>' : ''}</div>
+  <div class="stack" style="gap:12px">${r.q.map((i, j) => qHTML(k, i, d.qs[i], j + 1, r.p[i], r.a[i], 'r')).join('')}</div>
+  <div id="qsum">${done === all ? sumHTML(ok, all) : ''}</div>`;
+}
+function progText(done, ok, all){ return `本輪已作答 ${done} / ${all} 題，答對 ${ok} 題`; }
+function sumHTML(ok, all){
+  return ok === all ? `<div class="qsum win"><b>${all} 題全對！太厲害了！</b><span>這個單元完成了，可以換一組題目再挑戰。</span><button class="btn" type="button" data-act="new">再挑 ${all} 題</button></div>`
+    : `<div class="qsum"><b>本輪答對 ${ok} / ${all} 題</b><span>答錯的題目已收進錯題本。再挑一組，目標 ${all} 題全對！</span><button class="btn" type="button" data-act="new">再挑 ${all} 題</button></div>`;
+}
+function section(k){
+  const s = BYK[k], c = s.c, B = DATA.books[s.b.b - 1], d = C[k];
+  const i = s.i, prev = SECS[i - 1], next = SECS[i + 1], g = 6 + Math.ceil(B.b / 2), idx = c.secs.findIndex(x => x.k === k) + 1;
+  let h = `<div class="stack"><div class="crumb"><a href="#b${B.b}">${'七八九'[g - 7]}年級</a><span>/</span><span>${esc(c.pub[0])}</span></div>
+  <div class="hero2"><div class="hero-l">
+    <div class="chips"><span class="chip"><i class="dot st-${s.st}" style="padding:0"></i># ${SNAME[s.st]}</span><span class="codes">${esc(s.codes)}</span></div>
+    <h1>${esc(s.t)}</h1>
+    <p class="secno">${B.sem}・第 ${c.no} 章　第 ${idx} 節／共 ${c.secs.length} 節</p>
+    ${d && d.sum ? `<p class="sum">${d.sum}</p>` : ''}
+  </div>
+  <div class="hero-r"><div class="exam"><span class="exam-l">106–115 年會考</span><span class="exam-n"><b>${s.cap.length}</b> 題</span><span>重要度 ${starHTML(s.imp)}</span>
+    ${s.cap.length ? `<details class="capd"><summary>看題號（115-4 是 115 年第 4 題）</summary><div class="capids">${s.cap.map(x => x.replace('非', '（非選）').replace('組', '（題組）')).join('、')}</div></details>` : '<span class="small muted">十年內沒有直接出題，但常是其他單元的基礎。</span>'}
+  </div></div></div>
+  <p class="pubs">翰林：第 ${c.no} 章 ${esc(c.pub[0])}｜康軒：${esc(c.pub[1])}｜南一：${esc(c.pub[2])}</p>`;
+  if (!d) {
+    h += `<section class="blk"><p class="empty">這個單元的重點整理還在製作中。</p></section>`;
+  } else {
+    h += `<section class="blk"><div class="blk-h"><h2>重點整理</h2></div><div class="rows">${d.rows.map(r => `<div class="row"><div class="lab">${r.h}</div><div class="body"><ul>${r.li.map(x => `<li>${x}</li>`).join('')}</ul>${r.tip.map(t => `<p class="tip">${t}</p>`).join('')}</div></div>`).join('')}</div></section>`;
+    if (d.fig.length) h += `<section class="blk blk-fig"><div class="blk-h"><h2>圖解</h2><span class="muted small">點「放大」可以看大圖</span></div><div class="figs">${d.fig.map(f => `<figure class="fig"><button class="btn zoom" type="button" data-fig="${f}">放大</button>${DATA.figs[f]}</figure>`).join('')}</div></section>`;
+    if (d.w && W[d.w]) h += `<section class="blk blk-tool"><div class="blk-h"><h2>動手試試</h2><span class="muted small">${esc(WN[d.w] || '')}</span></div><div class="tool" data-w="${d.w}" data-o="${esc(d.wo || '')}"></div></section>`;
+    if (d.ex.length) h += `<section class="blk"><div class="blk-h"><h2>例題</h2></div>${d.ex.map((e, j) => `<div class="ex"><p><b>例 ${j + 1}</b>　${e.q}</p><details><summary>看解法</summary><ol class="sol">${e.a.map(x => `<li>${x}</li>`).join('')}</ol></details></div>`).join('')}</section>`;
+    if (d.qs.length) h += `<section class="blk" id="quiz">${quizHTML(k)}</section>`;
+  }
+  h += `<div class="pager">${prev ? `<a href="#s${prev.k}">← ${esc(prev.t)}</a>` : '<span></span>'}${next ? `<a href="#s${next.k}">${esc(next.t)} →</a>` : ''}</div></div>`;
+  return h;
+}
+function wrongView(){
+  const ids = Object.keys(st.wrong).filter(id => { const [k, i] = id.split('.'); return C[k] && C[k].qs[+i]; });
+  if (!ids.length) return `<div class="stack col"><h1>錯題本</h1><div class="card"><p>目前沒有錯題。答錯的題目會自動收進來，之後答對就會移出。</p></div></div>`;
+  const by = {};
+  ids.forEach(id => { const k = id.split('.')[0]; (by[k] = by[k] || []).push(+id.split('.')[1]); });
+  return `<div class="stack col"><h1>錯題本</h1><p class="muted">共 ${ids.length} 題。重新作答，答對的題目會移出錯題本（重新整理頁面後消失）。</p>
+  ${SECS.filter(s => by[s.k]).map(s => `<section class="blk stack" style="gap:10px"><h2><a href="#s${s.k}">${SEM[s.b.b]} ${s.no} ${esc(s.t)}</a></h2>${by[s.k].sort((a, b) => a - b).map((i, j) => { const q = C[s.k].qs[i]; return qHTML(s.k, i, q, j + 1, shuffle([...Array(q.o.length).keys()]), null, 'w'); }).join('')}</section>`).join('')}</div>`;
+}
+
+/* ---------- sidebar ---------- */
+let sideG = 7, curKey = null;
+function renderSide(act){
+  const b1 = (sideG - 7) * 2 + 1, chs = [];
+  [b1, b1 + 1].forEach(b => DATA.books[b - 1].chs.forEach(c => chs.push({c, b})));
+  const actCh = act ? BYK[act].c : null, gn = '七八九'[sideG - 7];
+  let h = `<div class="side-card"><div class="side-h"><span class="grid-ic" aria-hidden="true"></span><h2>課程地圖</h2></div>
+  <div class="gseg" role="group" aria-label="選擇年級">${[7, 8, 9].map(g => `<button type="button" data-g="${g}" class="${g === sideG ? 'on' : ''}" aria-pressed="${g === sideG}">${'七八九'[g - 7]}年級</button>`).join('')}</div>
+  <div class="side-sub">${gn}年級 ・ ${chs.length} 章</div><ol class="chs">`;
+  let lastB = 0;
+  chs.forEach(({c, b}, n) => {
+    if (b !== lastB) { h += `<li class="semh">${SEM[b]}・${DATA.books[b - 1].vol}</li>`; lastB = b; }
+    const on = c === actCh, done = c.secs.every(s => isDone(s.k));
+    h += `<li><a class="ch${on ? ' on' : ''}" href="#s${c.secs[0].k}"${on ? ' aria-current="true"' : ''}><span class="n">${n + 1}</span><span class="t">${esc(c.pub[0])}</span>${done ? '<span class="ok" title="全部完成">✓</span>' : ''}</a>`;
+    if (on) h += `<ul class="secs">${c.secs.map(s => `<li><a class="${s.k === act ? 'on' : ''}" href="#s${s.k}"${s.k === act ? ' aria-current="page"' : ''}>${esc(s.t)}${isDone(s.k) ? ' <span class="ok">✓</span>' : ''}</a></li>`).join('')}</ul>`;
+    h += '</li>';
+  });
+  $('#side').innerHTML = h + '</ol></div>';
+}
+$('#side').addEventListener('click', e => {
+  const g = e.target.closest('.gseg button');
+  if (g) { sideG = +g.dataset.g; renderSide(curKey); return; }
+  if (e.target.closest('a')) closeSide();
+});
+function closeSide(){ document.body.classList.remove('side-open'); $('#sideBtn').setAttribute('aria-expanded', 'false'); }
+$('#sideBtn').addEventListener('click', () => { const o = document.body.classList.toggle('side-open'); $('#sideBtn').setAttribute('aria-expanded', String(o)); });
+$('#sideBack').addEventListener('click', closeSide);
+
+/* ---------- figure zoom ---------- */
+const figModal = $('#figModal');
+function closeFig(){ figModal.hidden = true; $('#figBig').innerHTML = ''; }
+$('#figClose').addEventListener('click', closeFig);
+figModal.addEventListener('click', e => { if (e.target === figModal) closeFig(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (!figModal.hidden) closeFig(); else closeSide(); } });
+
+/* ---------- router ---------- */
+function route(){
+  const h = location.hash.slice(1) || 'home';
+  let html, nav = 'home', act = null;
+  if (/^b[1-6]$/.test(h)) { const b = +h[1]; html = book(b); nav = 'map'; sideG = 6 + Math.ceil(b / 2); }
+  else if (h[0] === 's' && BYK[h.slice(1)]) { const s = BYK[h.slice(1)]; act = s.k; html = section(s.k); nav = 'map'; sideG = 6 + Math.ceil(s.b.b / 2); st.last = s.k; save(); }
+  else if (h === 'wrong') { html = wrongView(); nav = 'wrong'; }
+  else html = home();
+  curKey = act;
+  $('#main').innerHTML = html;
+  renderSide(act);
+  $('#mapTab').setAttribute('href', '#s' + (st.last && BYK[st.last] ? st.last : SECS[0].k));
+  document.querySelectorAll('#tabs a[data-n]').forEach(a => a.classList.toggle('on', a.dataset.n === nav));
+  closeSide(); closeFig();
+  document.querySelectorAll('.tool[data-w]').forEach(el => { try { W[el.dataset.w](el); } catch (e) { el.textContent = '工具載入失敗'; } });
+  window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route);
+
+
+/* ---------- answering ---------- */
+$('#main').addEventListener('click', e => {
+  const btn = e.target.closest('.opts button');
+  if (btn) {
+    const box = btn.closest('.q');
+    if (box.classList.contains('locked')) return;
+    const id = box.dataset.q, [k, si] = id.split('.'), i = +si, q = C[k].qs[i], c = +btn.dataset.i, ok = c === q.a, perm = box.dataset.p.split('').map(Number);
+    if (!(id in st.first)) st.first[id] = ok;
+    if (ok) { st.cor[id] = 1; delete st.wrong[id]; } else st.wrong[id] = 1;
+    box.classList.add('locked');
+    box.querySelectorAll('.opts button').forEach(b => { const o = +b.dataset.i; b.disabled = true; b.className = o === c ? (ok ? 'ok' : 'no') : (!ok && o === q.a ? 'ans' : ''); });
+    const fb = box.querySelector('.fb'); fb.hidden = false; fb.className = 'fb ' + (ok ? 'ok' : 'no'); fb.innerHTML = fbHTML(q, ok, perm);
+    if (box.dataset.m === 'r') {
+      const r = getRound(k); r.a[i] = {c, ok};
+      const {done, ok: okn, all} = roundStat(k);
+      const p = $('#qprog'); if (p) p.textContent = progText(done, okn, all);
+      st.best[k] = Math.max(st.best[k] || 0, okn);
+      if (done === all) {
+        if (okn === all) st.done[k] = 1;
+        $('#qsum').innerHTML = sumHTML(okn, all);
+        if (okn === all) { setTimeout(() => petals('big'), 350); toast(`${all} 題全對！太厲害了！`, true); }
+      }
+      renderSide(curKey);
+    }
+    save();
+    if (ok) petals('small', btn.getBoundingClientRect());
+    return;
+  }
+  const z = e.target.closest('.zoom');
+  if (z) { $('#figBig').innerHTML = DATA.figs[z.dataset.fig]; figModal.hidden = false; $('#figClose').focus(); return; }
+  const nw = e.target.closest('[data-act="new"]');
+  if (nw) { const k = location.hash.slice(2); if (!C[k]) return; newRound(k); save(); const box = $('#quiz'); box.innerHTML = quizHTML(k); box.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'}); }
+});
+
+/* ---------- petals ---------- */
+const PCOL = ['#ff8fab', '#ffb3c6', '#ffd166', '#f4a261', '#90e0ef', '#b5e48c', '#cdb4db', '#ff6b6b'];
+let pcv = null, pctx = null, plist = [], prun = false;
+function petals(kind, rect){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!pcv) { pcv = document.createElement('canvas'); pcv.id = 'petalCv'; pcv.setAttribute('aria-hidden', 'true'); document.body.appendChild(pcv); pctx = pcv.getContext('2d'); }
+  const dpr = Math.min(2, window.devicePixelRatio || 1), W = innerWidth, H = innerHeight;
+  if (pcv.width !== Math.round(W * dpr) || pcv.height !== Math.round(H * dpr)) { pcv.width = Math.round(W * dpr); pcv.height = Math.round(H * dpr); }
+  pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const mk = (x, y, vx, vy, s) => ({x, y, vx, vy, s, r: Math.random() * 6.28, vr: (Math.random() - .5) * .25, ph: Math.random() * 6.28, c: PCOL[Math.floor(Math.random() * PCOL.length)], t: 0});
+  if (kind === 'big') {
+    for (let n = 0; n < 220; n++) plist.push(mk(Math.random() * W, -10 - Math.random() * H * .45, (Math.random() - .5) * 1.4, 2 + Math.random() * 2.5, 6 + Math.random() * 7));
+    for (let n = 0; n < 60; n++) { const L = n % 2 === 0; plist.push(mk(L ? 10 : W - 10, H - 10, (L ? 1 : -1) * (2 + Math.random() * 4), -(7 + Math.random() * 6), 5 + Math.random() * 5)); }
+  } else if (rect) {
+    const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+    for (let n = 0; n < 30; n++) { const a = -Math.PI / 2 + (Math.random() - .5) * 2.4, v = 3 + Math.random() * 4.5; plist.push(mk(cx, cy, Math.cos(a) * v, Math.sin(a) * v, 4 + Math.random() * 4)); }
+  }
+  if (plist.length > 520) plist = plist.slice(-520);
+  if (!prun) { prun = true; requestAnimationFrame(pstep); }
+}
+function pstep(){
+  const W = innerWidth, H = innerHeight;
+  pctx.clearRect(0, 0, W, H);
+  plist = plist.filter(p => p.y < H + 30 && p.t < 420);
+  for (const p of plist) {
+    p.t++; p.vy = Math.min(p.vy + .07, 3.2); p.vx *= .985; p.x += p.vx + Math.sin(p.t / 18 + p.ph) * .6; p.y += p.vy; p.r += p.vr;
+    pctx.save(); pctx.globalAlpha = p.t > 340 ? Math.max(0, (420 - p.t) / 80) : 1; pctx.translate(p.x, p.y); pctx.rotate(p.r);
+    pctx.fillStyle = p.c; pctx.beginPath(); pctx.ellipse(0, 0, p.s, p.s * .55, 0, 0, 6.283); pctx.fill(); pctx.restore();
+  }
+  if (plist.length) requestAnimationFrame(pstep); else { prun = false; pctx.clearRect(0, 0, W, H); }
+}
+let toastT = 0;
+function toast(msg, big){
+  let el = $('#toast'); if (!el) { el = document.createElement('div'); el.id = 'toast'; el.setAttribute('role', 'status'); document.body.appendChild(el); }
+  el.textContent = msg; el.classList.toggle('big', !!big); el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('on'), big ? 3800 : 2600);
+}
+
+/* ---------- search ---------- */
+const IDX = SECS.map(s => ({s, t: (s.t + ' ' + s.c.pub.join(' ') + ' ' + (C[s.k] ? C[s.k].rows.map(r => strip(r.h) + ' ' + r.li.map(strip).join(' ')).join(' ') : '')).toLowerCase()}));
+const qi = $('#q'), sres = $('#sres');
+qi.addEventListener('input', () => {
+  const v = qi.value.trim().toLowerCase();
+  if (!v) { sres.hidden = true; return; }
+  const hits = IDX.filter(x => x.t.includes(v)).slice(0, 12);
+  sres.innerHTML = hits.length ? hits.map(x => `<a href="#s${x.s.k}">${esc(x.s.t)}<small>${SEM[x.s.b.b]} 第 ${x.s.c.no} 章 ${esc(x.s.c.pub[0])}</small></a>`).join('') : '<p class="muted small" style="padding:6px 8px">找不到符合的單元</p>';
+  sres.hidden = false;
+});
+sres.addEventListener('click', e => { if (e.target.closest('a')) { sres.hidden = true; qi.value = ''; } });
+document.addEventListener('click', e => { if (!e.target.closest('.search')) sres.hidden = true; });
+qi.addEventListener('keydown', e => { if (e.key === 'Escape') { sres.hidden = true; qi.blur(); } if (e.key === 'Enter') { const a = sres.querySelector('a'); if (a) { location.hash = a.getAttribute('href'); sres.hidden = true; qi.value = ''; } } });
+
+/* ---------- widget helpers ---------- */
+const WN = {};
+const W = {};
+let uid = 0;
+const fmt = (x, d = 2) => { if (!isFinite(x)) return '—'; const r = Math.round(x * 10 ** d) / 10 ** d; return (r < 0 ? '−' : '') + Math.abs(r); };
+const sgn = x => (x < 0 ? '−' : '') + Math.abs(x);
+function plane(o){
+  const W0 = o.w || 320, H0 = o.h || 320, pad = 26, {x0, x1, y0, y1} = o, step = o.step || 1, lab = o.lab || 2;
+  const X = x => pad + (x - x0) * (W0 - 2 * pad) / (x1 - x0), Y = y => H0 - pad - (y - y0) * (H0 - 2 * pad) / (y1 - y0);
+  let g = '';
+  for (let x = Math.ceil(x0 / step) * step; x <= x1 + 1e-9; x += step) g += `<line x1="${X(x)}" x2="${X(x)}" y1="${Y(y0)}" y2="${Y(y1)}" stroke="var(--line)" stroke-width="1"/>`;
+  for (let y = Math.ceil(y0 / step) * step; y <= y1 + 1e-9; y += step) g += `<line x1="${X(x0)}" x2="${X(x1)}" y1="${Y(y)}" y2="${Y(y)}" stroke="var(--line)" stroke-width="1"/>`;
+  g += `<line x1="${X(x0)}" x2="${X(x1)}" y1="${Y(0)}" y2="${Y(0)}" stroke="var(--ink-2)" stroke-width="1.3"/><line x1="${X(0)}" x2="${X(0)}" y1="${Y(y0)}" y2="${Y(y1)}" stroke="var(--ink-2)" stroke-width="1.3"/>`;
+  for (let x = Math.ceil(x0 / lab) * lab; x <= x1; x += lab) if (x) g += `<text x="${X(x)}" y="${Y(0) + 13}" text-anchor="middle">${sgn(x)}</text>`;
+  for (let y = Math.ceil(y0 / lab) * lab; y <= y1; y += lab) if (y) g += `<text x="${X(0) - 5}" y="${Y(y) + 3.5}" text-anchor="end">${sgn(y)}</text>`;
+  g += `<text class="lbl" x="${X(x1) - 2}" y="${Y(0) - 6}" text-anchor="end">x</text><text class="lbl" x="${X(0) + 6}" y="${Y(y1) + 10}">y</text><text x="${X(0) - 5}" y="${Y(0) + 13}" text-anchor="end">O</text>`;
+  return {X, Y, W: W0, H: H0, g, x0, x1, y0, y1};
+}
+const svgWrap = (P, inner, label) => `<svg class="plot" viewBox="0 0 ${P.W} ${P.H}" role="img" aria-label="${label}">${P.g}${inner}</svg>`;
+function clipLine(P, a, b, c){ // a x + b y = c inside the plane box
+  const pts = [];
+  if (Math.abs(b) > 1e-12) { [P.x0, P.x1].forEach(x => { const y = (c - a * x) / b; if (y >= P.y0 - 1e-9 && y <= P.y1 + 1e-9) pts.push([x, y]); }); }
+  if (Math.abs(a) > 1e-12) { [P.y0, P.y1].forEach(y => { const x = (c - b * y) / a; if (x >= P.x0 - 1e-9 && x <= P.x1 + 1e-9) pts.push([x, y]); }); }
+  if (pts.length < 2) return '';
+  pts.sort((p, q) => p[0] - q[0] || p[1] - q[1]);
+  const [p, q] = [pts[0], pts[pts.length - 1]];
+  return `M${P.X(p[0]).toFixed(1)} ${P.Y(p[1]).toFixed(1)}L${P.X(q[0]).toFixed(1)} ${P.Y(q[1]).toFixed(1)}`;
+}
+function numLine(lo, hi, w = 420){
+  const pad = 20, X = x => pad + (x - lo) * (w - 2 * pad) / (hi - lo);
+  let g = `<line x1="${pad - 8}" x2="${w - pad + 10}" y1="40" y2="40" stroke="var(--ink-2)" stroke-width="1.4"/><path d="M${w - pad + 10} 40l-7 -4v8z" fill="var(--ink-2)"/>`;
+  for (let x = lo; x <= hi; x++) g += `<line x1="${X(x)}" x2="${X(x)}" y1="36" y2="44" stroke="var(--ink-2)"/>${(x % 2 === 0 || hi - lo <= 12) ? `<text x="${X(x)}" y="58" text-anchor="middle">${sgn(x)}</text>` : ''}`;
+  return {X, w, g};
+}
+function factorize(n){ const f = []; let m = n; for (let p = 2; p * p <= m; p++) { let e = 0; while (m % p === 0) { m /= p; e++; } if (e) f.push([p, e]); } if (m > 1) f.push([m, 1]); return f; }
+const fstr = f => f.length ? f.map(([p, e]) => e > 1 ? `${p}<sup>${e}</sup>` : `${p}`).join(' × ') : '1';
+const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; };
+const intIn = (el, def) => { const v = parseInt(el.value, 10); return isFinite(v) ? v : def; };
+function mount(el, html, upd){ el.innerHTML = html; el.addEventListener('input', upd); el.addEventListener('change', upd); upd(); }
+
+/* 數線：相反數、絕對值、距離與中點 */
+WN.numline = '拖動兩個點，看絕對值、距離與中點';
+W.numline = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl"><label>A 點 a = <input type="range" id="${p}a" min="-10" max="10" step="1" value="-4"></label><label>B 點 b = <input type="range" id="${p}b" min="-10" max="10" step="1" value="6"></label></div><div id="${p}o"></div>`, () => {
+    const a = +$('#' + p + 'a').value, b = +$('#' + p + 'b').value, N = numLine(-10, 10);
+    const pt = (x, n, col) => `<circle cx="${N.X(x)}" cy="40" r="5.5" fill="${col}"/><text class="lbl" x="${N.X(x)}" y="25" text-anchor="middle">${n}(${sgn(x)})</text>`;
+    const m = (a + b) / 2;
+    const svg = `<svg class="plot" viewBox="0 0 ${N.w} 70" role="img" aria-label="數線">${N.g}<line x1="${N.X(Math.min(a, b))}" x2="${N.X(Math.max(a, b))}" y1="40" y2="40" stroke="var(--ic)" stroke-width="4"/>${pt(a, 'A', 'var(--p1)')}${pt(b, 'B', 'var(--p2)')}<path d="M${N.X(m)} 46l-4 7h8z" fill="var(--ink)"/></svg>`;
+    $('#' + p + 'o').innerHTML = svg + `<div class="out"><span>|a| = ${Math.abs(a)}，|b| = ${Math.abs(b)}（到原點的距離）</span><span>a 的相反數是 ${sgn(-a)}；${a === b ? 'a = b' : a < b ? 'a < b（A 在 B 的左邊）' : 'a > b（A 在 B 的右邊）'}</span><span>距離 AB = |a − b| = |${sgn(a)} − (${sgn(b)})| = ${Math.abs(a - b)}</span><span>中點坐標 = (a + b) ÷ 2 = ${fmt(m)}（▲ 標記）</span></div>`;
+  });
+};
+/* 科學記號 */
+WN.sci = '輸入一個正數，換成科學記號';
+W.sci = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl"><label>正數 <input type="text" id="${p}n" value="0.000507" inputmode="decimal" style="width:12em"></label></div><div class="out" id="${p}o"></div>`, () => {
+    const raw = $('#' + p + 'n').value.replace(/[,\s，]/g, ''), o = $('#' + p + 'o');
+    if (!/^\d*\.?\d+$|^\d+\.$/.test(raw) || /^0*\.?0*$/.test(raw)) { o.innerHTML = '請輸入大於 0 的數，例如 3200000 或 0.00045'; return; }
+    let [ip, fp = ''] = raw.split('.'); ip = ip.replace(/^0+/, '');
+    let exp, digits;
+    if (ip.length) { exp = ip.length - 1; digits = (ip + fp); }
+    else { const z = fp.match(/^0*/)[0].length; exp = -(z + 1); digits = fp.slice(z); }
+    digits = digits.replace(/^0+/, '').replace(/0+$/, '') || '0';
+    const a = digits.length > 1 ? digits[0] + '.' + digits.slice(1) : digits;
+    o.innerHTML = `<span><b>${a} × 10<sup>${exp < 0 ? '−' + (-exp) : exp}</sup></b></span><span>${exp >= 0 ? `小數點向左移 ${exp} 位；整數部分是 ${exp + 1} 位數` : `小數點向右移 ${-exp} 位；小數點後第 ${-exp} 位開始出現不是 0 的數字`}</span>`;
+  });
+};
+/* 質因數分解 */
+WN.factor = '輸入正整數，求標準分解式與因數個數';
+W.factor = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl"><label>n = <input type="number" id="${p}n" value="360" min="2" max="9999999"></label></div><div class="out" id="${p}o"></div>`, () => {
+    const n = intIn($('#' + p + 'n'), 0), o = $('#' + p + 'o');
+    if (n < 2 || n > 9999999) { o.innerHTML = '請輸入 2 到 9999999 的整數'; return; }
+    const f = factorize(n), cnt = f.reduce((a, [, e]) => a * (e + 1), 1);
+    let list = '';
+    if (cnt <= 60) { const d = []; for (let i = 1; i * i <= n; i++) if (n % i === 0) { d.push(i); if (i * i !== n) d.push(n / i); } list = `<span class="small">正因數：${d.sort((a, b) => a - b).join('、')}</span>`; }
+    o.innerHTML = `<span><b>${n} = ${fstr(f)}</b>${f.length === 1 && f[0][1] === 1 ? '（是質數）' : ''}</span><span>正因數個數 = ${f.map(([, e]) => '(' + e + ' + 1)').join(' × ')} = ${cnt} 個</span>${list}`;
+  });
+};
+/* 最大公因數與最小公倍數 */
+WN.gcdlcm = '輸入兩個正整數，比較次方取小、取大';
+W.gcdlcm = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl"><label>a = <input type="number" id="${p}a" value="84" min="1"></label><label>b = <input type="number" id="${p}b" value="60" min="1"></label></div><div class="out" id="${p}o"></div>`, () => {
+    const a = intIn($('#' + p + 'a'), 0), b = intIn($('#' + p + 'b'), 0), o = $('#' + p + 'o');
+    if (a < 1 || b < 1 || a > 9999999 || b > 9999999) { o.innerHTML = '請輸入 1 到 9999999 的整數'; return; }
+    const fa = factorize(a), fb = factorize(b), ps = [...new Set([...fa, ...fb].map(x => x[0]))].sort((x, y) => x - y);
+    const e = (f, q) => (f.find(x => x[0] === q) || [0, 0])[1];
+    const G = ps.map(q => [q, Math.min(e(fa, q), e(fb, q))]).filter(x => x[1]), Lc = ps.map(q => [q, Math.max(e(fa, q), e(fb, q))]);
+    const g = gcd(a, b), l = a / g * b;
+    o.innerHTML = `<span>a = ${fstr(fa)}　b = ${fstr(fb)}</span><span>(a, b) = ${fstr(G)} = <b>${g}</b>（共同質因數，次方取小）</span><span>[a, b] = ${fstr(Lc)} = <b>${l}</b>（全部質因數，次方取大）</span><span>${g === 1 ? 'a 與 b 互質。' : ''}檢查：a × b = ${a * b} = ${g} × ${l}</span>`;
+  });
+};
+/* 兩條直線與聯立方程式 */
+WN.lines = '改係數，看兩條直線的交點就是聯立方程式的解';
+W.lines = el => {
+  const p = 'w' + (++uid), n = (id, v) => `<input type="number" id="${p}${id}" value="${v}" step="1" style="width:4.2em">`;
+  mount(el, `<div class="ctrl"><span><span style="color:var(--p1)">■</span> ${n('a1', 1)} x + ${n('b1', 1)} y = ${n('c1', 5)}</span><span><span style="color:var(--p2)">■</span> ${n('a2', 2)} x + ${n('b2', -1)} y = ${n('c2', 1)}</span></div><div id="${p}o"></div>`, () => {
+    const v = id => { const x = parseFloat($('#' + p + id).value); return isFinite(x) ? x : 0; };
+    const [a1, b1, c1, a2, b2, c2] = ['a1', 'b1', 'c1', 'a2', 'b2', 'c2'].map(v);
+    const P = plane({x0: -8, x1: 8, y0: -8, y1: 8});
+    const d1 = clipLine(P, a1, b1, c1), d2 = clipLine(P, a2, b2, c2), det = a1 * b2 - a2 * b1;
+    let inner = `<path d="${d1}" stroke="var(--p1)" stroke-width="2.4" fill="none"/><path d="${d2}" stroke="var(--p2)" stroke-width="2.4" fill="none" stroke-dasharray="${d1 === d2 ? '6 5' : ''}"/>`, msg;
+    if ((!a1 && !b1) || (!a2 && !b2)) msg = 'x、y 的係數不能同時是 0。';
+    else if (Math.abs(det) < 1e-12) msg = (Math.abs(a1 * c2 - a2 * c1) < 1e-12 && Math.abs(b1 * c2 - b2 * c1) < 1e-12) ? '兩式是同一條直線：有無限多組解。' : '兩直線平行、沒有交點：聯立方程式無解。';
+    else { const x = (c1 * b2 - c2 * b1) / det, y = (a1 * c2 - a2 * c1) / det; msg = `交點 (${fmt(x)}, ${fmt(y)})，這就是聯立方程式的解。`; if (Math.abs(x) <= 8 && Math.abs(y) <= 8) inner += `<circle cx="${P.X(x)}" cy="${P.Y(y)}" r="5" fill="var(--ic)"/>`; }
+    $('#' + p + 'o').innerHTML = svgWrap(P, inner, '兩條直線') + `<div class="out">${msg}</div>`;
+  });
+};
+/* 直角坐標：點、象限、平移 */
+WN.coord = '點一下坐標平面放一個點，再試著平移';
+W.coord = el => {
+  const p = 'w' + (++uid); let px = 3, py = -2;
+  el.innerHTML = `<div class="ctrl"><label>向右平移 <input type="number" id="${p}dx" value="-5" style="width:4em"></label><label>向上平移 <input type="number" id="${p}dy" value="4" style="width:4em"></label></div><div id="${p}o"></div>`;
+  const quad = (x, y) => !x || !y ? (x || y ? (x ? 'x 軸上' : 'y 軸上') : '原點') : x > 0 ? (y > 0 ? '第一象限' : '第四象限') : (y > 0 ? '第二象限' : '第三象限');
+  const draw = () => {
+    const dx = intIn($('#' + p + 'dx'), 0), dy = intIn($('#' + p + 'dy'), 0), qx = px + dx, qy = py + dy;
+    const P = plane({x0: -8, x1: 8, y0: -8, y1: 8});
+    let inner = `<circle cx="${P.X(px)}" cy="${P.Y(py)}" r="5.5" fill="var(--p1)"/><text class="lbl" x="${P.X(px) + 8}" y="${P.Y(py) - 7}">P</text>`;
+    if ((dx || dy) && Math.abs(qx) <= 8 && Math.abs(qy) <= 8) inner += `<line x1="${P.X(px)}" y1="${P.Y(py)}" x2="${P.X(qx)}" y2="${P.Y(qy)}" stroke="var(--muted)" stroke-dasharray="4 4"/><circle cx="${P.X(qx)}" cy="${P.Y(qy)}" r="5.5" fill="var(--p2)"/><text class="lbl" x="${P.X(qx) + 8}" y="${P.Y(qy) - 7}">P′</text>`;
+    $('#' + p + 'o').innerHTML = svgWrap(P, `<rect class="hit" x="0" y="0" width="${P.W}" height="${P.H}" fill="transparent"/>` + inner, '坐標平面') +
+      `<div class="out"><span>P(${sgn(px)}, ${sgn(py)})，在${quad(px, py)}；到 x 軸距離 ${Math.abs(py)}，到 y 軸距離 ${Math.abs(px)}</span><span>平移後 P′(${sgn(px)} ${dx < 0 ? '−' : '+'} ${Math.abs(dx)}, ${sgn(py)} ${dy < 0 ? '−' : '+'} ${Math.abs(dy)}) = P′(${sgn(qx)}, ${sgn(qy)})，在${quad(qx, qy)}</span></div>`;
+    const svg = el.querySelector('svg');
+    svg.addEventListener('click', ev => { const r = svg.getBoundingClientRect(), sx = (ev.clientX - r.left) * P.W / r.width, sy = (ev.clientY - r.top) * P.H / r.height;
+      const x = Math.round(-8 + (sx - 26) * 16 / (P.W - 52)), y = Math.round(8 - (sy - 26) * 16 / (P.H - 52)); if (Math.abs(x) <= 8 && Math.abs(y) <= 8) { px = x; py = y; draw(); } });
+  };
+  el.addEventListener('input', draw); draw();
+};
+/* 正比與反比 */
+WN.propo = '調整 k，比較正比 y = kx 與反比 y = k ÷ x 的圖形';
+W.propo = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl"><label><select id="${p}m"><option value="0">正比 y = kx</option><option value="1">反比 xy = k</option></select></label><label>k = <input type="range" id="${p}k" min="-6" max="6" step="1" value="2"></label><span id="${p}kv"></span></div><div id="${p}o"></div>`, () => {
+    let k = +$('#' + p + 'k').value; if (!k) k = 1;
+    const inv = $('#' + p + 'm').value === '1'; $('#' + p + 'kv').textContent = 'k = ' + sgn(k);
+    const P = plane({x0: -8, x1: 8, y0: -8, y1: 8});
+    let d = '';
+    if (!inv) d = clipLine(P, k, -1, 0);
+    else [[0.1, 8], [-8, -0.1]].forEach(([s, e]) => { let seg = ''; for (let x = s; x <= e + 1e-9; x += 0.05) { const y = k / x; if (Math.abs(y) <= 8.5) seg += (seg ? 'L' : 'M') + P.X(x).toFixed(1) + ' ' + P.Y(Math.max(-8.5, Math.min(8.5, y))).toFixed(1); else if (seg) { d += seg; seg = ''; } } d += seg; });
+    const rows = [1, 2, 3, 4, 6].map(x => `<td class="num">${fmt(inv ? k / x : k * x)}</td>`).join('');
+    $('#' + p + 'o').innerHTML = svgWrap(P, `<path d="${d}" stroke="var(--p1)" stroke-width="2.4" fill="none"/>`, inv ? '反比圖形' : '正比圖形') +
+      `<div class="out"><span>${inv ? `xy = ${sgn(k)}：x 變為 2 倍，y 變為 ½ 倍（乘積固定）。圖形是兩條曲線，不會碰到兩軸。` : `y = ${sgn(k)}x：x 變為 2 倍，y 也變為 2 倍（比值固定）。圖形是通過原點的直線。`}</span>
+      <div style="overflow-x:auto"><table class="small"><tr><td>x</td><td class="num">1</td><td class="num">2</td><td class="num">3</td><td class="num">4</td><td class="num">6</td></tr><tr><td>y</td>${rows}</tr></table></div></div>`;
+  });
+};
+/* 不等式的解在數線上 */
+WN.ineq = '選不等號與數字，看解在數線上怎麼畫';
+W.ineq = el => {
+  const p = 'w' + (++uid), sel = (id, v) => `<select id="${p}${id}">${['>', '<', '≥', '≤'].map(s => `<option${s === v ? ' selected' : ''}>${s}</option>`).join('')}</select>`;
+  mount(el, `<div class="ctrl"><label>x ${sel('s1', '>')} <input type="number" id="${p}k1" value="-2" style="width:4em"></label><label><input type="checkbox" id="${p}two" checked> 而且 x ${sel('s2', '≤')} <input type="number" id="${p}k2" value="4" style="width:4em"></label></div><div id="${p}o"></div>`, () => {
+    const two = $('#' + p + 'two').checked, N = numLine(-10, 10);
+    const conds = [[$('#' + p + 's1').value, Math.max(-9, Math.min(9, intIn($('#' + p + 'k1'), 0)))]];
+    if (two) conds.push([$('#' + p + 's2').value, Math.max(-9, Math.min(9, intIn($('#' + p + 'k2'), 0)))]);
+    let lo = -Infinity, loIn = false, hi = Infinity, hiIn = false;
+    conds.forEach(([s, k]) => { if (s === '>' || s === '≥') { if (k > lo || (k === lo && s === '>')) { lo = k; loIn = s === '≥'; } } else { if (k < hi || (k === hi && s === '<')) { hi = k; hiIn = s === '≤'; } } });
+    let g = N.g;
+    conds.forEach(([s, k], i) => { const y = 22 - i * 12, right = s === '>' || s === '≥', fill = s === '≥' || s === '≤';
+      g += `<line x1="${N.X(k)}" x2="${N.X(k)}" y1="40" y2="${y}" stroke="var(--p${i + 1})" stroke-width="2"/><line x1="${N.X(k)}" x2="${right ? N.w - 6 : 6}" y1="${y}" y2="${y}" stroke="var(--p${i + 1})" stroke-width="2.4"/><circle cx="${N.X(k)}" cy="40" r="5.5" fill="${fill ? `var(--p${i + 1})` : 'var(--paper)'}" stroke="var(--p${i + 1})" stroke-width="2"/>`; });
+    const empty = lo > hi || (lo === hi && !(loIn && hiIn));
+    const txt = empty ? '兩個條件沒有重疊：無解' : lo === -Infinity ? `x ${hiIn ? '≤' : '<'} ${sgn(hi)}` : hi === Infinity ? `x ${loIn ? '≥' : '>'} ${sgn(lo)}` : lo === hi ? `x = ${sgn(lo)}` : `${sgn(lo)} ${loIn ? '≤' : '<'} x ${hiIn ? '≤' : '<'} ${sgn(hi)}`;
+    let ints = '';
+    if (!empty && lo > -Infinity && hi < Infinity) { const a = loIn ? Math.ceil(lo) : Math.floor(lo) + 1, b = hiIn ? Math.floor(hi) : Math.ceil(hi) - 1; ints = b >= a ? `；範圍內的整數有 ${b - a + 1} 個` : '；範圍內沒有整數'; }
+    $('#' + p + 'o').innerHTML = `<svg class="plot" viewBox="0 0 ${N.w} 70" role="img" aria-label="不等式的解">${g}</svg><div class="out"><span>${two ? '重疊部分：' : '解：'}<b>${txt}</b>${ints}</span><span class="small muted">實心點表示包含這個數（≥、≤），空心點表示不包含（>、<）。</span></div>`;
+  });
+};
+/* 統計數據 */
+WN.stats = '輸入一組數，算出平均數、中位數、眾數';
+W.stats = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl" style="display:block"><label for="${p}t" class="small muted">用空格或逗號分開</label><textarea id="${p}t">40 45 45 50 56 60 68</textarea></div><div id="${p}o"></div>`, () => {
+    const a = ($('#' + p + 't').value.match(/-?\d+(\.\d+)?/g) || []).map(Number).slice(0, 200), o = $('#' + p + 'o');
+    if (!a.length) { o.innerHTML = '<div class="out">請輸入數字</div>'; return; }
+    const s = [...a].sort((x, y) => x - y), n = s.length, sum = s.reduce((x, y) => x + y, 0);
+    const med = n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2;
+    const cnt = {}; s.forEach(x => cnt[x] = (cnt[x] || 0) + 1); const mx = Math.max(...Object.values(cnt));
+    const modes = Object.keys(cnt).filter(k => cnt[k] === mx).map(Number).sort((x, y) => x - y);
+    const keys = Object.keys(cnt).map(Number).sort((x, y) => x - y), bw = Math.min(36, 380 / keys.length), H = 130;
+    let g = `<line x1="10" x2="410" y1="${H - 20}" y2="${H - 20}" stroke="var(--ink-2)"/>`;
+    keys.forEach((k, i) => { const x = 14 + i * (400 / keys.length), h = cnt[k] / mx * (H - 44);
+      g += `<rect x="${x}" y="${H - 20 - h}" width="${bw - 2}" height="${h}" rx="2" fill="${cnt[k] === mx && mx > 1 ? 'var(--ic)' : 'var(--p1)'}"/><text x="${x + bw / 2 - 1}" y="${H - 6}" text-anchor="middle">${k}</text><text x="${x + bw / 2 - 1}" y="${H - 24 - h}" text-anchor="middle">${cnt[k]}</text>`; });
+    o.innerHTML = `<svg class="plot" viewBox="0 0 420 ${H}" role="img" aria-label="各數值的次數">${g}</svg><div class="out"><span>共 ${n} 個，總和 ${fmt(sum)}，<b>平均數 ${fmt(sum / n)}</b></span><span>由小到大：${s.join('、')}</span><span><b>中位數 ${fmt(med)}</b>${n % 2 ? `（第 ${(n + 1) / 2} 個）` : `（第 ${n / 2}、${n / 2 + 1} 個的平均）`}</span><span><b>眾數 ${mx > 1 ? modes.join('、') : '沒有（每個數都只出現一次）'}</b>${mx > 1 ? `（出現 ${mx} 次）` : ''}；全距 ${fmt(s[n - 1] - s[0])}</span></div>`;
+  });
+};
+
+/* ===== 八年級 ===== */
+const sq = n => { let k = 1, m = n; for (let f = 2; f * f <= m; f++) while (m % (f * f) === 0) { m /= f * f; k *= f; } return [k, m]; };
+const rtH = (k, m) => m === 1 ? `${k}` : `${k === 1 ? '' : k}√<span style="border-top:1px solid currentColor">${m}</span>`;
+/* 乘法公式面積圖 */
+WN.mulform = '拖動 a、b，看 (a + b)² 怎麼拆成四塊';
+W.mulform = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl"><label>a = <input type="range" id="${p}a" min="1" max="9" value="5"></label><label>b = <input type="range" id="${p}b" min="1" max="9" value="3"></label></div><div id="${p}o"></div>`, () => {
+    const a = +$('#' + p + 'a').value, b = +$('#' + p + 'b').value, s = 240 / (a + b), A = a * s, B = b * s, o = 30;
+    const r = (x, y, w, h, f, t) => `<rect x="${o + x}" y="${o + y}" width="${w}" height="${h}" fill="${f}" stroke="var(--ink)" stroke-width="1.2"/><text class="lbl" x="${o + x + w / 2}" y="${o + y + h / 2 + 4}" text-anchor="middle">${t}</text>`;
+    const svg = `<svg class="plot" viewBox="0 0 300 300" role="img" aria-label="和的平方面積圖">${r(0, 0, A, A, 'var(--fig-a)', 'a² = ' + a * a)}${r(A, 0, B, A, 'var(--fig-b)', 'ab')}${r(0, A, A, B, 'var(--fig-b)', 'ab')}${r(A, A, B, B, 'var(--fig-c)', 'b²')}
+      <text class="lbl" x="${o + A / 2}" y="22" text-anchor="middle">a = ${a}</text><text class="lbl" x="${o + A + B / 2}" y="22" text-anchor="middle">b = ${b}</text></svg>`;
+    $('#' + p + 'o').innerHTML = svg + `<div class="out"><span>(a + b)<sup>2</sup> = (${a} + ${b})<sup>2</sup> = ${(a + b) ** 2}</span><span>a<sup>2</sup> + 2ab + b<sup>2</sup> = ${a * a} + ${2 * a * b} + ${b * b} = ${(a + b) ** 2}</span><span class="small muted">兩塊 ab 長方形就是中間項 2ab，不能漏掉。a<sup>2</sup> + b<sup>2</sup> 只有 ${a * a + b * b}。</span></div>`;
+  });
+};
+/* 平方根與最簡根式 */
+WN.sqrt = '輸入正整數 n，看 √n 的最簡根式與大約的值';
+W.sqrt = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl"><label>n = <input type="number" id="${p}n" value="72" min="1" max="1000000"></label></div><div class="out" id="${p}o"></div>`, () => {
+    const n = intIn($('#' + p + 'n'), 0), o = $('#' + p + 'o');
+    if (n < 1 || n > 1000000) { o.innerHTML = '請輸入 1 到 1000000 的整數'; return; }
+    const [k, m] = sq(n), f = Math.floor(Math.sqrt(n));
+    o.innerHTML = `<span>√${n} = <b>${rtH(k, m)}</b>${m === 1 ? '（開得盡，是有理數）' : '（無理數）'}</span>${m === 1 ? '' : `<span>${f}<sup>2</sup> = ${f * f} < ${n} < ${(f + 1) ** 2} = ${f + 1}<sup>2</sup>，所以 ${f} < √${n} < ${f + 1}</span>`}<span>√${n} ≈ ${Math.sqrt(n).toFixed(4)}</span>${k > 1 && m > 1 ? `<span class="small muted">√${n} = √(${k * k} × ${m}) = ${k}√${m}，把開得盡的 ${k * k} 移到根號外。</span>` : ''}`;
+  });
+};
+/* 畢氏定理 */
+WN.pyth = '輸入兩股長，求斜邊；或檢查三邊是否構成直角三角形';
+W.pyth = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl"><label>股 a = <input type="number" id="${p}a" value="5" min="1" max="200"></label><label>股 b = <input type="number" id="${p}b" value="12" min="1" max="200"></label></div><div id="${p}o"></div>`, () => {
+    const a = intIn($('#' + p + 'a'), 0), b = intIn($('#' + p + 'b'), 0), o = $('#' + p + 'o');
+    if (a < 1 || b < 1 || a > 200 || b > 200) { o.innerHTML = '<div class="out">請輸入 1 到 200 的整數</div>'; return; }
+    const c2 = a * a + b * b, [k, m] = sq(c2), s = 200 / Math.max(a, b), A = a * s, B = b * s;
+    const svg = `<svg class="plot" viewBox="0 0 260 240" role="img" aria-label="直角三角形"><polygon points="30,${20 + B} ${30 + A},${20 + B} 30,20" fill="var(--fig-a)" stroke="var(--ink)" stroke-width="1.5"/><polyline points="30,${12 + B} 38,${12 + B} 38,${20 + B}" fill="none" stroke="var(--ink)"/>
+      <text class="lbl" x="${30 + A / 2}" y="${36 + B}" text-anchor="middle">a = ${a}</text><text class="lbl" x="22" y="${20 + B / 2}" text-anchor="end">b</text><text class="lbl" x="${36 + A / 2}" y="${16 + B / 2}" fill="var(--ic)">c</text></svg>`;
+    o.innerHTML = svg + `<div class="out"><span>c<sup>2</sup> = ${a}<sup>2</sup> + ${b}<sup>2</sup> = ${a * a} + ${b * b} = ${c2}</span><span>斜邊 c = √${c2} = <b>${rtH(k, m)}</b>${m === 1 ? '（整數，' + a + '、' + b + '、' + k + ' 是一組畢氏三數）' : ' ≈ ' + Math.sqrt(c2).toFixed(3)}</span></div>`;
+  });
+};
+/* 十字交乘 */
+WN.cross = '輸入 ax² + bx + c 的係數，找整數的十字交乘分解';
+W.cross = el => {
+  const p = 'w' + (++uid), n = (id, v) => `<input type="number" id="${p}${id}" value="${v}" style="width:4.5em">`;
+  mount(el, `<div class="ctrl"><span>${n('a', 2)} x<sup>2</sup> + ${n('b', 5)} x + ${n('c', -3)}</span></div><div class="out" id="${p}o"></div>`, () => {
+    const a = intIn($('#' + p + 'a'), 0), b = intIn($('#' + p + 'b'), 0), c = intIn($('#' + p + 'c'), 0), o = $('#' + p + 'o');
+    if (!a || Math.abs(a) > 200 || Math.abs(b) > 2000 || Math.abs(c) > 2000) { o.innerHTML = 'a 不能是 0，係數請在 ±2000 以內'; return; }
+    const g0 = gcd(gcd(a, b), c) * (a < 0 ? -1 : 1), A = a / g0, B = b / g0, Cc = c / g0;
+    const term = (u, v) => `(${u === 1 ? '' : u === -1 ? '−' : u}x ${v < 0 ? '−' : '+'} ${Math.abs(v)})`;
+    let hit = null;
+    if (Cc === 0) hit = 'zero';
+    for (let pp = 1; !hit && pp <= Math.abs(A); pp++) if (A % pp === 0) { const r = A / pp;
+      for (let q = -Math.abs(Cc); q <= Math.abs(Cc); q++) if (q && Cc % q === 0) { const s2 = Cc / q; if (pp * s2 + q * r === B) { hit = [pp, q, r, s2]; break; } } }
+    const pre = g0 === 1 ? '' : (g0 === -1 ? '−' : g0);
+    if (hit === 'zero') o.innerHTML = `<span>常數項是 0，直接提公因式：${pre}x(${A === 1 ? '' : A}x ${B < 0 ? '−' : '+'} ${Math.abs(B)})</span>`;
+    else if (hit) { const [pp, q, r, s2] = hit;
+      const pn = v => v < 0 ? `(${sgn(v)})` : `${v}`;
+      o.innerHTML = `<span>${g0 !== 1 ? `先提出公因數 ${sgn(g0)}：${g0 === -1 ? '−' : g0}(${A}x² ${B < 0 ? '−' : '+'} ${Math.abs(B)}x ${Cc < 0 ? '−' : '+'} ${Math.abs(Cc)})<br>` : ''}拆 ${A} = ${pp} × ${r}，${sgn(Cc)} = ${pn(q)} × ${pn(s2)}</span>
+      <span>交叉相乘：${pp} × ${pn(s2)} + ${pn(q)} × ${r} = ${sgn(pp * s2 + q * r)}，等於一次項係數 ${sgn(B)} ✓</span><span><b>${pre}${term(pp, q)}${term(r, s2)}</b></span>`; }
+    else o.innerHTML = `<span>找不到整數組合使交叉相乘的和等於 ${sgn(B)}：這個式子在整數範圍內無法用十字交乘分解。</span><span class="small muted">判別式 b² − 4ac = ${b * b - 4 * a * c}${b * b - 4 * a * c >= 0 && Number.isInteger(Math.sqrt(b * b - 4 * a * c)) ? '' : '，不是完全平方數'}</span>`;
+  });
+};
+/* 一元二次方程式 */
+WN.quad = '輸入 ax² + bx + c = 0 的係數，看判別式與解';
+W.quad = el => {
+  const p = 'w' + (++uid), n = (id, v) => `<input type="number" id="${p}${id}" value="${v}" style="width:4.5em">`;
+  mount(el, `<div class="ctrl"><span>${n('a', 1)} x<sup>2</sup> + ${n('b', -4)} x + ${n('c', 1)} = 0</span></div><div class="out" id="${p}o"></div>`, () => {
+    const a = intIn($('#' + p + 'a'), 0), b = intIn($('#' + p + 'b'), 0), c = intIn($('#' + p + 'c'), 0), o = $('#' + p + 'o');
+    if (!a) { o.innerHTML = 'a 不能是 0（否則不是一元二次方程式）'; return; }
+    const D = b * b - 4 * a * c;
+    let res;
+    if (D < 0) res = '判別式小於 0，<b>沒有解</b>。';
+    else { const [k, m] = D === 0 ? [0, 1] : sq(D), den = 2 * a;
+      if (m === 1) { const r1 = (-b + k) / den, r2 = (-b - k) / den, fr = v => { const nu = Math.round(v * den), g = gcd(nu, den) || 1; let N = nu / g, M = den / g; if (M < 0) { N = -N; M = -M; } return M === 1 ? sgn(N) : `${N < 0 ? '−' : ''}${Math.abs(N)}/${M}`; };
+        res = D === 0 ? `判別式 = 0，<b>重根 x = ${fr(r1)}</b>` : `判別式 = ${D} 是完全平方數，<b>x = ${fr(r1)} 或 x = ${fr(r2)}</b>（也可以用因式分解）`; }
+      else { const g = gcd(gcd(b, k), den), sg = den / g < 0 ? -1 : 1, B2 = -b / g * sg, K2 = k / g, M2 = den / g * sg;
+        res = `判別式 = ${D}，兩相異根：<b>x = ${M2 === 1 ? '' : '('}${B2 ? sgn(B2) + ' ± ' : '±'}${rtH(K2, m)}${M2 === 1 ? '' : ') / ' + M2}</b><br><span class="small">≈ ${fmt((-b + Math.sqrt(D)) / den, 3)}、${fmt((-b - Math.sqrt(D)) / den, 3)}</span>`; } }
+    const pn = v => v < 0 ? `(${sgn(v)})` : `${v}`;
+    o.innerHTML = `<span>b<sup>2</sup> − 4ac = ${pn(b)}<sup>2</sup> − 4 × ${pn(a)} × ${pn(c)} = ${sgn(D)}</span><span>${res}</span><span class="small muted">公式解：x = (−b ± √(b² − 4ac)) ÷ 2a</span>`;
+  });
+};
+/* 累積次數 */
+WN.freq = '改各組次數，看累積次數、相對次數與累積折線圖';
+W.freq = el => {
+  const p = 'w' + (++uid), lows = [50, 60, 70, 80, 90], def = [6, 12, 10, 8, 4];
+  mount(el, `<div class="ctrl">${lows.map((l, i) => `<label>${l}~${l + 10}：<input type="number" id="${p}f${i}" value="${def[i]}" min="0" max="99" style="width:4em"></label>`).join('')}</div><div id="${p}o"></div>`, () => {
+    const f = lows.map((_, i) => Math.max(0, intIn($('#' + p + 'f' + i), 0))), N = f.reduce((x, y) => x + y, 0), o = $('#' + p + 'o');
+    if (!N) { o.innerHTML = '<div class="out">次數總和不能是 0</div>'; return; }
+    let acc = 0; const cum = f.map(x => acc += x);
+    const P = {X: x => 40 + (x - 50) * 3.4, Y: y => 170 - y / N * 140};
+    let g = `<line x1="40" x2="${P.X(100)}" y1="170" y2="170" stroke="var(--ink-2)"/><line x1="40" x2="40" y1="20" y2="170" stroke="var(--ink-2)"/>`;
+    [0, 25, 50, 75, 100].forEach(t => g += `<line x1="40" x2="${P.X(100)}" y1="${170 - t * 1.4}" y2="${170 - t * 1.4}" stroke="var(--line)"/><text x="34" y="${174 - t * 1.4}" text-anchor="end">${t}%</text>`);
+    [50, 60, 70, 80, 90, 100].forEach(x => g += `<text x="${P.X(x)}" y="184" text-anchor="middle">${x}</text>`);
+    const pts = [[50, 0], ...cum.map((c, i) => [lows[i] + 10, c])];
+    g += `<polyline points="${pts.map(([x, y]) => P.X(x) + ',' + P.Y(y)).join(' ')}" fill="none" stroke="var(--p1)" stroke-width="2.2"/>` + pts.map(([x, y]) => `<circle cx="${P.X(x)}" cy="${P.Y(y)}" r="3.5" fill="var(--p1)"/>`).join('');
+    o.innerHTML = `<div style="overflow-x:auto"><table class="small"><tr><th>分數</th><th>次數</th><th>累積次數</th><th>相對次數</th><th>累積相對次數</th></tr>${f.map((x, i) => `<tr><td>${lows[i]}~${lows[i] + 10}</td><td class="num">${x}</td><td class="num">${cum[i]}</td><td class="num">${fmt(100 * x / N, 1)}%</td><td class="num">${fmt(100 * cum[i] / N, 1)}%</td></tr>`).join('')}</table></div>
+      <svg class="plot" viewBox="0 0 230 192" role="img" aria-label="累積相對次數折線圖">${g}</svg><div class="out small">折線圖以各組上限為橫坐標，從 50 分、0% 開始；只會上升或持平。</div>`;
+  });
+};
+/* 數列 */
+WN.seq = '選等差或等比，改首項與公差（公比），看各項與總和';
+W.seq = el => {
+  const p = 'w' + (++uid);
+  const g = el.dataset.o === 'geo';
+  mount(el, `<div class="ctrl"><label><select id="${p}m"><option value="0">等差</option><option value="1"${g ? ' selected' : ''}>等比</option></select></label><label>首項 <input type="number" id="${p}a" value="3" style="width:4.5em"></label><label><span id="${p}dl">公差</span> <input type="number" id="${p}d" value="${g ? 2 : 4}" style="width:4.5em"></label><label>項數 n <input type="number" id="${p}n" value="10" min="1" max="30" style="width:4em"></label></div><div class="out" id="${p}o"></div>`, () => {
+    const geo = $('#' + p + 'm').value === '1', a = parseFloat($('#' + p + 'a').value) || 0, d = parseFloat($('#' + p + 'd').value) || 0, n = Math.max(1, Math.min(30, intIn($('#' + p + 'n'), 1)));
+    $('#' + p + 'dl').textContent = geo ? '公比' : '公差';
+    const t = []; for (let i = 0; i < n; i++) t.push(geo ? a * d ** i : a + i * d);
+    const S = t.reduce((x, y) => x + y, 0), an = t[n - 1];
+    $('#' + p + 'o').innerHTML = `<span>${t.map(x => fmt(x, 3)).join('、')}</span>` + (geo ?
+      `<span>a<sub>${n}</sub> = a<sub>1</sub> × r<sup>n−1</sup> = ${fmt(a)} × ${fmt(d)}<sup>${n - 1}</sup> = <b>${fmt(an, 3)}</b></span><span>前 ${n} 項和 = ${fmt(S, 3)}</span>` :
+      `<span>a<sub>${n}</sub> = a<sub>1</sub> + (n − 1)d = ${fmt(a)} + ${n - 1} × ${fmt(d)} = <b>${fmt(an)}</b></span><span>S<sub>${n}</sub> = n(a<sub>1</sub> + a<sub>n</sub>) ÷ 2 = ${n} × (${fmt(a)} + ${fmt(an)}) ÷ 2 = <b>${fmt(S)}</b></span>`);
+  });
+};
+/* 線型函數 */
+WN.linfun = '調整 a、b，看 y = ax + b 的圖形怎麼變';
+W.linfun = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl"><label>a = <input type="range" id="${p}a" min="-4" max="4" step="0.5" value="2"></label><label>b = <input type="range" id="${p}b" min="-6" max="6" step="1" value="-3"></label></div><div id="${p}o"></div>`, () => {
+    const a = +$('#' + p + 'a').value, b = +$('#' + p + 'b').value, P = plane({x0: -8, x1: 8, y0: -8, y1: 8});
+    let inner = `<path d="${clipLine(P, a, -1, -b)}" stroke="var(--p1)" stroke-width="2.4" fill="none"/>`;
+    if (Math.abs(b) <= 8) inner += `<circle cx="${P.X(0)}" cy="${P.Y(b)}" r="4.5" fill="var(--p2)"/>`;
+    const xi = a ? -b / a : null; if (a && Math.abs(xi) <= 8) inner += `<circle cx="${P.X(xi)}" cy="${P.Y(0)}" r="4.5" fill="var(--ic)"/>`;
+    $('#' + p + 'o').innerHTML = svgWrap(P, inner, '線型函數圖形') + `<div class="out"><span><b>y = ${a === 0 ? '' : (a === 1 ? '' : a === -1 ? '−' : fmt(a)) + 'x '}${a === 0 ? fmt(b) : (b < 0 ? '− ' + Math.abs(b) : '+ ' + b)}</b>：${a > 0 ? '一次函數，x 增加 y 也增加（往右上）' : a < 0 ? '一次函數，x 增加 y 減少（往右下）' : '常數函數，圖形是水平線'}</span><span>與 y 軸交於 (0, ${sgn(b)})${a ? `，與 x 軸交於 (${fmt(xi)}, 0)` : ''}</span></div>`;
+  });
+};
+/* 多邊形內角 */
+WN.polyangle = '拖動邊數 n，看正 n 邊形的內角與外角';
+W.polyangle = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl"><label>邊數 n = <input type="range" id="${p}n" min="3" max="20" value="6"></label><span id="${p}v"></span></div><div id="${p}o"></div>`, () => {
+    const n = +$('#' + p + 'n').value; $('#' + p + 'v').textContent = n;
+    const cx = 130, cy = 120, R = 95, pts = []; for (let i = 0; i < n; i++) { const t = -Math.PI / 2 + 2 * Math.PI * i / n; pts.push([cx + R * Math.cos(t), cy + R * Math.sin(t)]); }
+    let diag = ''; for (let i = 2; i < n - 1; i++) diag += `<line x1="${pts[0][0]}" y1="${pts[0][1]}" x2="${pts[i][0]}" y2="${pts[i][1]}" stroke="var(--muted)" stroke-dasharray="4 3"/>`;
+    const sum = (n - 2) * 180;
+    $('#' + p + 'o').innerHTML = `<svg class="plot" viewBox="0 0 260 240" role="img" aria-label="正多邊形"><polygon points="${pts.map(q => q.map(v => v.toFixed(1)).join(',')).join(' ')}" fill="var(--fig-c)" stroke="var(--ink)" stroke-width="1.5"/>${diag}</svg>
+      <div class="out"><span>從一個頂點畫對角線，分成 ${n - 2} 個三角形</span><span>內角和 = (${n} − 2) × 180° = <b>${sum}°</b></span><span>正 ${n} 邊形每個內角 = ${sum}° ÷ ${n} = <b>${fmt(sum / n, 2)}°</b>，每個外角 = 360° ÷ ${n} = <b>${fmt(360 / n, 2)}°</b></span><span class="small muted">外角和永遠是 360°，與邊數無關。</span></div>`;
+  });
+};
+
+/* ===== 九年級 ===== */
+const rad = d => d * Math.PI / 180;
+/* 三角比 */
+WN.trig = '拖動角度 θ，看直角三角形三邊的比值';
+W.trig = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl"><label>∠A = θ = <input type="range" id="${p}t" min="5" max="85" value="30"></label><span id="${p}v"></span></div><div id="${p}o"></div>`, () => {
+    const t = +$('#' + p + 't').value; $('#' + p + 'v').textContent = t + '°';
+    const s = Math.sin(rad(t)), c = Math.cos(rad(t)), H = 210, ax = 30, ay = 200, cx2 = ax + H * c, cy2 = ay, bx = cx2, by = ay - H * s;
+    const k = Math.min(1, 160 / (H * s)), X = x => ax + (x - ax) * k, Y = y => ay + (y - ay) * k;
+    const svg = `<svg class="plot" viewBox="0 0 270 225" role="img" aria-label="直角三角形"><polygon points="${X(ax)},${Y(ay)} ${X(cx2)},${Y(cy2)} ${X(bx)},${Y(by)}" fill="var(--fig-a)" stroke="var(--ink)" stroke-width="1.5"/>
+      <polyline points="${X(cx2) - 8},${Y(cy2)} ${X(cx2) - 8},${Y(cy2) - 8} ${X(cx2)},${Y(cy2) - 8}" fill="none" stroke="var(--ink)"/>
+      <path d="M${X(ax) + 26} ${Y(ay)} A26 26 0 0 0 ${X(ax) + 26 * c} ${Y(ay) - 26 * s}" fill="none" stroke="var(--ic)" stroke-width="2"/>
+      <text class="lbl" x="${X(ax) - 4}" y="${Y(ay) + 15}">A</text><text class="lbl" x="${X(cx2) + 4}" y="${Y(cy2) + 15}">C</text><text class="lbl" x="${X(bx) + 6}" y="${Y(by) + 4}">B</text>
+      <text class="lbl" x="${(X(cx2) + X(bx)) / 2 + 6}" y="${(Y(cy2) + Y(by)) / 2}">對邊</text><text class="lbl" x="${(X(ax) + X(cx2)) / 2}" y="${Y(ay) + 15}" text-anchor="middle">鄰邊</text><text class="lbl" x="${(X(ax) + X(bx)) / 2 - 8}" y="${(Y(ay) + Y(by)) / 2 - 6}" text-anchor="end">斜邊</text></svg>`;
+    const sp = {30: ['½', '√3 / 2', '√3 / 3'], 45: ['√2 / 2', '√2 / 2', '1'], 60: ['√3 / 2', '½', '√3']}[t];
+    $('#' + p + 'o').innerHTML = svg + `<div class="out"><span>sin ${t}° = 對邊 ÷ 斜邊 ≈ <b>${s.toFixed(4)}</b>${sp ? '（= ' + sp[0] + '）' : ''}</span><span>cos ${t}° = 鄰邊 ÷ 斜邊 ≈ <b>${c.toFixed(4)}</b>${sp ? '（= ' + sp[1] + '）' : ''}</span><span>tan ${t}° = 對邊 ÷ 鄰邊 ≈ <b>${(s / c).toFixed(4)}</b>${sp ? '（= ' + sp[2] + '）' : ''}</span><span class="small muted">斜邊是 10 時：對邊 ≈ ${(10 * s).toFixed(2)}，鄰邊 ≈ ${(10 * c).toFixed(2)}。三角形放大或縮小，這些比值都不變。</span></div>`;
+  });
+};
+/* 圓心角與圓周角 */
+WN.inscribed = '改變弧 AB 的度數，移動 P 點，看圓周角是否改變';
+W.inscribed = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl"><label>弧 AB = <input type="range" id="${p}m" min="20" max="180" step="2" value="100"></label><label>P 的位置 <input type="range" id="${p}t" min="5" max="95" value="50"></label></div><div id="${p}o"></div>`, () => {
+    const m = +$('#' + p + 'm').value, t = +$('#' + p + 't').value / 100, cx = 130, cy = 115, R = 92;
+    const pt = d => [cx + R * Math.cos(rad(d)), cy + R * Math.sin(rad(d))];
+    const A = pt(90 + m / 2), B = pt(90 - m / 2), P = pt(90 + m / 2 + t * (360 - m));
+    const ang = (U, V, Wp) => { const a1 = Math.atan2(U[1] - V[1], U[0] - V[0]), a2 = Math.atan2(Wp[1] - V[1], Wp[0] - V[0]); let d = Math.abs(a1 - a2) * 180 / Math.PI; return d > 180 ? 360 - d : d; };
+    const f = q => q.map(v => v.toFixed(1)).join(' ');
+    const svg = `<svg class="plot" viewBox="0 0 260 225" role="img" aria-label="圓心角與圓周角"><circle cx="${cx}" cy="${cy}" r="${R}" fill="var(--fig-c)" stroke="var(--ink)" stroke-width="1.5"/>
+      <path d="M${f(A)} A${R} ${R} 0 0 0 ${f(B)}" fill="none" stroke="var(--ic)" stroke-width="4"/>
+      <polyline points="${f(A)} ${cx} ${cy} ${f(B)}" fill="none" stroke="var(--p1)" stroke-width="2"/><polyline points="${f(A)} ${f(P)} ${f(B)}" fill="none" stroke="var(--p2)" stroke-width="2"/>
+      ${[[A, 'A'], [B, 'B'], [P, 'P'], [[cx, cy], 'O']].map(([q, n]) => `<circle cx="${q[0]}" cy="${q[1]}" r="3.5" fill="var(--ink)"/><text class="lbl" x="${q[0] + (q[0] >= cx ? 6 : -14)}" y="${q[1] + (q[1] >= cy ? 14 : -6)}">${n}</text>`).join('')}</svg>`;
+    $('#' + p + 'o').innerHTML = svg + `<div class="out"><span><span style="color:var(--p1)">■</span> 圓心角 ∠AOB = 弧 AB 的度數 = <b>${m}°</b></span><span><span style="color:var(--p2)">■</span> 圓周角 ∠APB ≈ <b>${ang(A, P, B).toFixed(1)}°</b> = ½ × ${m}°</span><span class="small muted">P 在優弧上任意移動，∠APB 都不變；弧 AB 是 180° 時，∠APB = 90°。</span></div>`;
+  });
+};
+/* 三角形的三心 */
+WN.centers = '拖動三角形的頂點，看外心、內心、重心的位置';
+W.centers = el => {
+  const p = 'w' + (++uid); let V = [[95, 45], [45, 190], [225, 170]], drag = -1;
+  el.innerHTML = `<div class="ctrl"><label><input type="checkbox" id="${p}o" checked> 外心 O</label><label><input type="checkbox" id="${p}i"> 內心 I</label><label><input type="checkbox" id="${p}g"> 重心 G</label></div>
+    <svg class="plot" id="${p}s" viewBox="0 0 270 240" role="img" aria-label="可拖動頂點的三角形" style="touch-action:none"><g id="${p}d"></g></svg><div class="out" id="${p}t"></div>`;
+  const svg = $('#' + p + 's');
+  const dist = (P1, P2) => Math.hypot(P1[0] - P2[0], P1[1] - P2[1]);
+  const draw = () => {
+    const [A, B, C] = V, a = dist(B, C), b = dist(C, A), c = dist(A, B), D = 2 * (A[0] * (B[1] - C[1]) + B[0] * (C[1] - A[1]) + C[0] * (A[1] - B[1]));
+    let g = `<polygon points="${V.map(q => q.join(',')).join(' ')}" fill="var(--fig-a)" stroke="var(--ink)" stroke-width="1.5"/>`, txt = [];
+    const big = Math.max(a, b, c), rest = a * a + b * b + c * c - big * big, kind = Math.abs(rest - big * big) < 0.02 * big * big ? '直角' : rest > big * big ? '銳角' : '鈍角';
+    if (Math.abs(D) > 1) {
+      if ($('#' + p + 'o').checked) { const s2 = q => q[0] * q[0] + q[1] * q[1], ox = (s2(A) * (B[1] - C[1]) + s2(B) * (C[1] - A[1]) + s2(C) * (A[1] - B[1])) / D, oy = (s2(A) * (C[0] - B[0]) + s2(B) * (A[0] - C[0]) + s2(C) * (B[0] - A[0])) / D, R = dist([ox, oy], A);
+        [[A, B], [B, C], [C, A]].forEach(([U, W2]) => { const mx = (U[0] + W2[0]) / 2, my = (U[1] + W2[1]) / 2; g += `<line x1="${mx}" y1="${my}" x2="${ox}" y2="${oy}" stroke="var(--p1)" stroke-dasharray="4 3"/>`; });
+        g += `<circle cx="${ox}" cy="${oy}" r="${R}" fill="none" stroke="var(--p1)" stroke-width="1.5"/><circle cx="${ox}" cy="${oy}" r="4" fill="var(--p1)"/><text class="lbl" x="${ox + 6}" y="${oy - 6}">O</text>`;
+        txt.push(`外心 O 到三頂點等距，是外接圓的圓心；${kind}三角形的外心在${kind === '銳角' ? '三角形內部' : kind === '直角' ? '斜邊中點' : '三角形外部'}`); }
+      if ($('#' + p + 'i').checked) { const s = a + b + c, ix = (a * A[0] + b * B[0] + c * C[0]) / s, iy = (a * A[1] + b * B[1] + c * C[1]) / s, r = Math.abs(D) / 2 / (s / 2);
+        V.forEach(q => g += `<line x1="${q[0]}" y1="${q[1]}" x2="${ix}" y2="${iy}" stroke="var(--p2)" stroke-dasharray="4 3"/>`);
+        g += `<circle cx="${ix}" cy="${iy}" r="${r}" fill="none" stroke="var(--p2)" stroke-width="1.5"/><circle cx="${ix}" cy="${iy}" r="4" fill="var(--p2)"/><text class="lbl" x="${ix + 6}" y="${iy + 14}">I</text>`;
+        txt.push('內心 I 到三邊等距，是內切圓的圓心，一定在三角形內部'); }
+      if ($('#' + p + 'g').checked) { const gx = (A[0] + B[0] + C[0]) / 3, gy = (A[1] + B[1] + C[1]) / 3;
+        V.forEach((q, i) => { const o1 = V[(i + 1) % 3], o2 = V[(i + 2) % 3]; g += `<line x1="${q[0]}" y1="${q[1]}" x2="${(o1[0] + o2[0]) / 2}" y2="${(o1[1] + o2[1]) / 2}" stroke="var(--ic)" stroke-dasharray="4 3"/>`; });
+        g += `<circle cx="${gx}" cy="${gy}" r="4" fill="var(--ic)"/><text class="lbl" x="${gx - 14}" y="${gy - 6}">G</text>`;
+        txt.push('重心 G 是三條中線的交點，把每條中線分成 2 : 1，一定在三角形內部'); }
+    }
+    V.forEach((q, i) => g += `<circle cx="${q[0]}" cy="${q[1]}" r="9" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5" style="cursor:grab"/><text class="lbl" x="${q[0]}" y="${q[1] + 4}" text-anchor="middle">${'ABC'[i]}</text>`);
+    $('#' + p + 'd').innerHTML = g;
+    $('#' + p + 't').innerHTML = `<span>這是<b>${kind}三角形</b>（拖動 A、B、C 試試看）</span>` + txt.map(x => `<span>${x}</span>`).join('');
+  };
+  const toSvg = e => { const r = svg.getBoundingClientRect(); return [Math.max(10, Math.min(260, (e.clientX - r.left) * 270 / r.width)), Math.max(10, Math.min(230, (e.clientY - r.top) * 240 / r.height))]; };
+  svg.addEventListener('pointerdown', e => { const q = toSvg(e); let best = 22; V.forEach((v, i) => { const d = dist(v, q); if (d < best) { best = d; drag = i; } }); if (drag >= 0) svg.setPointerCapture(e.pointerId); });
+  svg.addEventListener('pointermove', e => { if (drag < 0) return; V[drag] = toSvg(e); draw(); });
+  ['pointerup', 'pointercancel'].forEach(t => svg.addEventListener(t, () => { drag = -1; }));
+  el.addEventListener('change', draw); draw();
+};
+/* 二次函數 */
+WN.quadfun = '調整 a、h、k，看 y = a(x − h)² + k 的圖形';
+W.quadfun = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl"><label>a = <input type="range" id="${p}a" min="-3" max="3" step="0.5" value="1"></label><label>h = <input type="range" id="${p}h" min="-5" max="5" step="1" value="2"></label><label>k = <input type="range" id="${p}k" min="-6" max="6" step="1" value="-4"></label></div><div id="${p}o"></div>`, () => {
+    let a = +$('#' + p + 'a').value; if (!a) a = 0.5;
+    const h = +$('#' + p + 'h').value, k = +$('#' + p + 'k').value, P = plane({x0: -8, x1: 8, y0: -8, y1: 8});
+    let d = '', on = false;
+    for (let x = -8; x <= 8.001; x += 0.05) { const y = a * (x - h) ** 2 + k; if (y >= -8.5 && y <= 8.5) { d += (on ? 'L' : 'M') + P.X(x).toFixed(1) + ' ' + P.Y(y).toFixed(1); on = true; } else on = false; }
+    let inner = `<line x1="${P.X(h)}" x2="${P.X(h)}" y1="${P.Y(-8)}" y2="${P.Y(8)}" stroke="var(--muted)" stroke-dasharray="5 4"/><path d="${d}" stroke="var(--p1)" stroke-width="2.4" fill="none"/><circle cx="${P.X(h)}" cy="${P.Y(k)}" r="5" fill="var(--ic)"/>`;
+    const disc = -k / a, roots = disc > 0 ? [h - Math.sqrt(disc), h + Math.sqrt(disc)] : disc === 0 ? [h] : [];
+    const fa = a === 1 ? '' : a === -1 ? '−' : fmt(a), xp = h === 0 ? 'x' : `(x ${h > 0 ? '−' : '+'} ${Math.abs(h)})`, kp = k === 0 ? '' : ` ${k > 0 ? '+' : '−'} ${Math.abs(k)}`;
+    $('#' + p + 'o').innerHTML = svgWrap(P, inner, '二次函數圖形') + `<div class="out"><span><b>y = ${fa}${xp}<sup>2</sup>${kp}</b>，開口${a > 0 ? '向上' : '向下'}${Math.abs(a) > 1 ? '、比 y = x² 窄' : Math.abs(a) < 1 ? '、比 y = x² 寬' : ''}</span><span>頂點 (${sgn(h)}, ${sgn(k)})，對稱軸 x = ${sgn(h)}</span><span>x = ${sgn(h)} 時有<b>${a > 0 ? '最小值' : '最大值'} ${sgn(k)}</b></span><span>與 x 軸${roots.length === 2 ? `交於兩點，x ≈ ${fmt(roots[0])}、${fmt(roots[1])}` : roots.length === 1 ? `相切於 (${sgn(h)}, 0)` : '沒有交點'}；與 y 軸交於 (0, ${fmt(a * h * h + k)})</span></div>`;
+  });
+};
+/* 盒狀圖 */
+WN.boxplot = '輸入一組數，求四分位數並畫盒狀圖';
+const median = s => { const n = s.length; return n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2; };
+W.boxplot = el => {
+  const p = 'w' + (++uid);
+  mount(el, `<div class="ctrl" style="display:block"><label for="${p}t" class="small muted">用空格或逗號分開</label><textarea id="${p}t">35 42 48 50 53 57 60 62 66 71 88</textarea></div><div id="${p}o"></div>`, () => {
+    const s = ($('#' + p + 't').value.match(/-?\d+(\.\d+)?/g) || []).map(Number).sort((x, y) => x - y), n = s.length, o = $('#' + p + 'o');
+    if (n < 4) { o.innerHTML = '<div class="out">請至少輸入 4 個數</div>'; return; }
+    const lo = s.slice(0, Math.floor(n / 2)), hi = s.slice(Math.ceil(n / 2)), q1 = median(lo), q2 = median(s), q3 = median(hi), mn = s[0], mx = s[n - 1];
+    const span = mx - mn || 1, X = v => 20 + (v - mn) / span * 380;
+    const svg = `<svg class="plot" viewBox="0 0 420 92" role="img" aria-label="盒狀圖"><line x1="${X(mn)}" x2="${X(q1)}" y1="40" y2="40" stroke="var(--ink)" stroke-width="1.5"/><line x1="${X(q3)}" x2="${X(mx)}" y1="40" y2="40" stroke="var(--ink)" stroke-width="1.5"/>
+      <rect x="${X(q1)}" y="22" width="${Math.max(1, X(q3) - X(q1))}" height="36" fill="var(--fig-a)" stroke="var(--ink)" stroke-width="1.5"/><line x1="${X(q2)}" x2="${X(q2)}" y1="22" y2="58" stroke="var(--ic)" stroke-width="2.5"/>
+      ${[mn, mx].map(v => `<line x1="${X(v)}" x2="${X(v)}" y1="30" y2="50" stroke="var(--ink)" stroke-width="1.5"/>`).join('')}
+      ${[[mn, '最小'], [q1, 'Q₁'], [q2, 'Q₂'], [q3, 'Q₃'], [mx, '最大']].map(([v, t], i) => `<text x="${X(v)}" y="${i % 2 ? 14 : 76}" text-anchor="middle">${t} ${fmt(v)}</text>`).join('')}</svg>`;
+    o.innerHTML = svg + `<div class="out"><span>由小到大（${n} 個）：${s.join('、')}</span><span>Q<sub>2</sub>（中位數）= ${fmt(q2)}；前半段 ${lo.join('、')} 的中位數 Q<sub>1</sub> = ${fmt(q1)}；後半段 ${hi.join('、')} 的中位數 Q<sub>3</sub> = ${fmt(q3)}</span><span>全距 = ${fmt(mx)} − ${fmt(mn)} = <b>${fmt(mx - mn)}</b>；四分位距 = Q<sub>3</sub> − Q<sub>1</sub> = <b>${fmt(q3 - q1)}</b></span><span class="small muted">資料個數是奇數時，前後半段都不含中位數本身。</span></div>`;
+  });
+};
+/* 機率模擬 */
+WN.prob = '重複做實驗，比較實際出現的比例與理論機率';
+W.prob = el => {
+  const p = 'w' + (++uid), EXP = [
+    ['擲一枚硬幣，出現正面', 1, 2, () => Math.random() < 0.5],
+    ['擲一顆骰子，出現 6 點', 1, 6, () => Math.floor(Math.random() * 6) === 5],
+    ['擲兩顆骰子，點數和為 7', 6, 36, () => Math.floor(Math.random() * 6) + Math.floor(Math.random() * 6) + 2 === 7],
+    ['擲兩枚硬幣，兩枚都是正面', 1, 4, () => Math.random() < 0.5 && Math.random() < 0.5]];
+  let n = 0, hit = 0;
+  el.innerHTML = `<div class="ctrl"><label><select id="${p}e">${EXP.map((x, i) => `<option value="${i}">${x[0]}</option>`).join('')}</select></label></div><div class="ctrl">${[10, 100, 1000].map(k => `<button class="btn" type="button" data-k="${k}">做 ${k} 次</button>`).join('')}<button class="btn" type="button" data-k="0">重設</button></div><div class="out" id="${p}o"></div>`;
+  const show = () => { const e = EXP[+$('#' + p + 'e').value], th = e[1] / e[2];
+    $('#' + p + 'o').innerHTML = `<span>理論機率 = ${e[1]} / ${e[2]} ≈ <b>${th.toFixed(4)}</b></span><span>已做 ${n} 次，成功 ${hit} 次，相對次數 = ${n ? (hit / n).toFixed(4) : '—'}</span>
+      <svg class="plot" viewBox="0 0 420 50" role="img" aria-label="相對次數與理論機率"><rect x="10" y="12" width="400" height="14" fill="var(--line)"/><rect x="10" y="12" width="${n ? 400 * hit / n : 0}" height="14" fill="var(--p1)"/><line x1="${10 + 400 * th}" x2="${10 + 400 * th}" y1="6" y2="32" stroke="var(--ic)" stroke-width="2.5"/><text x="${10 + 400 * th}" y="45" text-anchor="middle">理論值</text></svg>
+      <span class="small muted">次數越多，相對次數通常越接近理論機率，但每次實驗結果都可能不同。</span>`; };
+  el.addEventListener('click', ev => { const b = ev.target.closest('button[data-k]'); if (!b) return; const k = +b.dataset.k, e = EXP[+$('#' + p + 'e').value]; if (!k) { n = hit = 0; } else { for (let i = 0; i < k; i++) if (e[3]()) hit++; n += k; } show(); });
+  el.addEventListener('change', () => { n = hit = 0; show(); }); show();
+};
+/* 立體圖形 */
+WN.solid = '選一種立體圖形，輸入尺寸，算表面積與體積';
+W.solid = el => {
+  const p = 'w' + (++uid), n = (id, l, v) => `<label>${l} <input type="number" id="${p}${id}" value="${v}" min="0" step="any" style="width:4.5em"></label>`;
+  const cone = el.dataset.o === 'cone';
+  mount(el, `<div class="ctrl"><label><select id="${p}k"><option value="0">長方體（直角柱）</option><option value="1">直圓柱</option><option value="2"${cone ? ' selected' : ''}>正四角錐</option><option value="3">直圓錐</option></select></label></div><div class="ctrl" id="${p}in"></div><div class="out" id="${p}o"></div>`, () => {
+    const k = +$('#' + p + 'k').value, box = $('#' + p + 'in');
+    const want = [['長 a', '寬 b', '高 h'], ['底面半徑 r', '高 h'], ['底邊 a', '斜高 l'], ['底面半徑 r', '母線長 l']][k];
+    if (box.dataset.k !== String(k)) { box.dataset.k = k; box.innerHTML = want.map((l, i) => n('v' + i, l, [[6, 4, 5], [3, 10], [6, 5], [3, 5]][k][i])).join(''); }
+    const v = want.map((_, i) => Math.max(0, parseFloat($('#' + p + 'v' + i).value) || 0)), o = $('#' + p + 'o');
+    if (k === 0) { const [a, b, h] = v; o.innerHTML = `<span>表面積 = 2(ab + bh + ah) = 2(${a * b} + ${b * h} + ${a * h}) = <b>${fmt(2 * (a * b + b * h + a * h))}</b></span><span>體積 = 底面積 × 高 = ${a} × ${b} × ${h} = <b>${fmt(a * b * h)}</b></span>`; }
+    else if (k === 1) { const [r, h] = v; o.innerHTML = `<span>展開圖：兩個半徑 ${r} 的圓 + 長 2πr、寬 ${h} 的長方形</span><span>表面積 = 2πr² + 2πrh = ${fmt(2 * r * r)}π + ${fmt(2 * r * h)}π = <b>${fmt(2 * r * r + 2 * r * h)}π</b> ≈ ${fmt((2 * r * r + 2 * r * h) * Math.PI)}</span><span>體積 = 底面積 × 高 = πr²h = <b>${fmt(r * r * h)}π</b> ≈ ${fmt(r * r * h * Math.PI)}</span>`; }
+    else if (k === 2) { const [a, l] = v; o.innerHTML = `<span>展開圖：一個邊長 ${a} 的正方形 + 4 個底 ${a}、高 ${l} 的等腰三角形</span><span>表面積 = a² + 4 × (a × l ÷ 2) = ${fmt(a * a)} + ${fmt(2 * a * l)} = <b>${fmt(a * a + 2 * a * l)}</b></span>`; }
+    else { const [r, l] = v; o.innerHTML = l <= r ? '<span>母線長必須大於底面半徑</span>' : `<span>展開圖：底面圓 + 半徑 ${l} 的扇形，扇形弧長 = 底面圓周長 2πr</span><span>扇形圓心角 = 360° × r ÷ l = 360° × ${r} ÷ ${l} = <b>${fmt(360 * r / l)}°</b></span><span>側面積 = πrl = ${fmt(r * l)}π；表面積 = πr² + πrl = <b>${fmt(r * r + r * l)}π</b> ≈ ${fmt((r * r + r * l) * Math.PI)}</span>`; }
+  });
+};
+
+route();
+</script>

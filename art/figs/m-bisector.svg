@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 158" role="img">
+  <title>中垂線與角平分線</title>
+  <line x1="180" y1="12" x2="180" y2="146" stroke="var(--fig-line)" stroke-width="1"/>
+  <text x="90" y="23" font-size="13" text-anchor="middle" fill="var(--fig-ink)" font-weight="600">中垂線</text>
+  <text x="270" y="23" font-size="13" text-anchor="middle" fill="var(--fig-ink)" font-weight="600">角平分線</text>
+  <line x1="25" y1="83" x2="153" y2="83" stroke="var(--fig-ink)" stroke-width="1.5"/>
+  <line x1="89" y1="36" x2="89" y2="117" stroke="var(--fig-ink)" stroke-width="1.5"/>
+  <polyline points="89,75 97,75 97,83" fill="none" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <line x1="57" y1="79" x2="57" y2="87" stroke="var(--fig-soft)" stroke-width="1.5"/>
+  <line x1="121" y1="79" x2="121" y2="87" stroke="var(--fig-soft)" stroke-width="1.5"/>
+  <circle cx="25" cy="83" r="2.5" fill="var(--fig-ink)"/>
+  <text x="25" y="103" font-size="13" text-anchor="middle" fill="var(--fig-ink)">A</text>
+  <circle cx="153" cy="83" r="2.5" fill="var(--fig-ink)"/>
+  <text x="153" y="103" font-size="13" text-anchor="middle" fill="var(--fig-ink)">B</text>
+  <circle cx="89" cy="83" r="2.5" fill="var(--fig-ink)"/>
+  <text x="103" y="101" font-size="13" text-anchor="middle" fill="var(--fig-ink)">M</text>
+  <text x="100" y="43" font-size="13" text-anchor="middle" fill="var(--fig-ink)">L</text>
+  <line x1="209" y1="119" x2="324.2" y2="98.7" stroke="var(--fig-ink)" stroke-width="1.5"/>
+  <line x1="209" y1="119" x2="223.4" y2="37.3" stroke="var(--fig-ink)" stroke-width="1.5"/>
+  <line x1="209" y1="119" x2="279" y2="49" stroke="var(--ic)" stroke-width="2.4"/>
+  <path d="M 226,102 A 24,24 0 0 1 232.6,114.8" fill="none" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 213.2,95.4 A 24,24 0 0 1 226,102" fill="none" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="209" cy="119" r="2.5" fill="var(--fig-ink)"/>
+  <text x="201" y="130" font-size="13" text-anchor="middle" fill="var(--fig-ink)">O</text>
+  <circle cx="324.2" cy="98.7" r="2.5" fill="var(--fig-ink)"/>
+  <text x="336" y="102" font-size="13" text-anchor="middle" fill="var(--fig-ink)">A</text>
+  <circle cx="223.4" cy="37.3" r="2.5" fill="var(--fig-ink)"/>
+  <text x="234" y="42" font-size="13" text-anchor="middle" fill="var(--fig-ink)">B</text>
+  <circle cx="279" cy="49" r="2.5" fill="var(--fig-ink)"/>
+  <text x="289" y="46" font-size="13" text-anchor="middle" fill="var(--fig-ink)">C</text>
+  <text x="90" y="142" font-size="13" text-anchor="middle" fill="var(--fig-ink)">AM = BM，L ⊥ AB</text>
+  <text x="270" y="142" font-size="13" text-anchor="middle" fill="var(--fig-ink)">∠AOC = ∠COB</text>
+</svg>

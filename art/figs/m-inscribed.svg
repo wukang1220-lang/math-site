@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 184" role="img">
+  <title>比較同弧的圓心角與圓周角，並觀察直徑所對的圓周角。</title>
+  <line x1="180" y1="9" x2="180" y2="174" stroke="var(--fig-line)" stroke-width="1" stroke-linecap="round"/>
+  <g transform="translate(0 0)">
+    <text x="90" y="18" font-size="13" text-anchor="middle" fill="var(--fig-ink)">圓心角與圓周角</text>
+    <circle cx="90" cy="86" r="45" fill="none" stroke="var(--fig-ink)" stroke-width="1.5"/>
+    <polyline points="54,113 63,50 126,113" fill="none" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    <polyline points="54,113 90,86 126,113" fill="none" stroke="var(--fig-soft)" stroke-width="1.4" stroke-linejoin="round"/>
+    <path d="M75.6 96.8 A18 18 0 0 0 104.4 96.8" fill="none" stroke="var(--fig-ink)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M60.2 69.8 A20 20 0 0 0 77.1 64.1" fill="none" stroke="var(--fig-ink)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M126 113 A45 45 0 0 1 54 113" fill="none" stroke="var(--ic)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="90" cy="86" r="2.5" fill="var(--fig-ink)"/>
+    <circle cx="54" cy="113" r="2.5" fill="var(--fig-ink)"/>
+    <circle cx="126" cy="113" r="2.5" fill="var(--fig-ink)"/>
+    <circle cx="63" cy="50" r="2.5" fill="var(--fig-ink)"/>
+    <text x="43" y="122" font-size="13" text-anchor="middle" fill="var(--fig-ink)">A</text>
+    <text x="138" y="122" font-size="13" text-anchor="middle" fill="var(--fig-ink)">B</text>
+    <text x="79" y="86" font-size="13" text-anchor="middle" fill="var(--fig-ink)">O</text>
+    <text x="52" y="45" font-size="13" text-anchor="middle" fill="var(--fig-ink)">P</text>
+    <text x="90" y="153" font-size="12" text-anchor="middle" fill="var(--fig-ink)">∠AOB = 弧 AB 的度數</text>
+    <text x="90" y="172" font-size="12" text-anchor="middle" fill="var(--fig-ink)">∠APB = ½∠AOB</text>
+  </g>
+  <g transform="translate(180 0)">
+    <text x="90" y="18" font-size="13" text-anchor="middle" fill="var(--fig-ink)">直徑所對的圓周角</text>
+    <circle cx="90" cy="86" r="45" fill="none" stroke="var(--fig-ink)" stroke-width="1.5"/>
+    <polygon points="45,86 117,50 135,86" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="45" y1="86" x2="135" y2="86" stroke="var(--ic)" stroke-width="2.6" stroke-linecap="round"/>
+    <polyline points="110.3,53.4 113.6,60.1 120.4,56.7" fill="none" stroke="var(--fig-ink)" stroke-width="1.2" stroke-linejoin="round"/>
+    <circle cx="90" cy="86" r="2.5" fill="var(--fig-ink)"/>
+    <circle cx="45" cy="86" r="2.5" fill="var(--fig-ink)"/>
+    <circle cx="135" cy="86" r="2.5" fill="var(--fig-ink)"/>
+    <circle cx="117" cy="50" r="2.5" fill="var(--fig-ink)"/>
+    <text x="32" y="90" font-size="13" text-anchor="middle" fill="var(--fig-ink)">A</text>
+    <text x="148" y="90" font-size="13" text-anchor="middle" fill="var(--fig-ink)">B</text>
+    <text x="90" y="103" font-size="13" text-anchor="middle" fill="var(--fig-ink)">O</text>
+    <text x="128" y="44" font-size="13" text-anchor="middle" fill="var(--fig-ink)">P</text>
+    <text x="90" y="153" font-size="12" text-anchor="middle" fill="var(--fig-ink)">∠APB = 90°</text>
+  </g>
+</svg>

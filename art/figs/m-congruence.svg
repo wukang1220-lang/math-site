@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 258" role="img">
+  <title>三角形全等的判別</title>
+  <line x1="10" y1="128" x2="350" y2="128" stroke="var(--fig-line)" stroke-width="1"/>
+  <line x1="120" y1="12" x2="120" y2="118" stroke="var(--fig-line)" stroke-width="1"/>
+  <line x1="240" y1="12" x2="240" y2="118" stroke="var(--fig-line)" stroke-width="1"/>
+  <line x1="180" y1="139" x2="180" y2="248" stroke="var(--fig-line)" stroke-width="1"/>
+  <g transform="translate(60 0)">
+    <polygon points="-32,77 34,77 -9,22" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="1" y1="73" x2="1" y2="81" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <line x1="10.6" y1="53.5" x2="16.9" y2="48.6" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <line x1="8.1" y1="50.4" x2="14.4" y2="45.5" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <line x1="-15.3" y1="47.4" x2="-22.6" y2="44.3" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <line x1="-16.8" y1="51" x2="-24.2" y2="48" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <line x1="-18.4" y1="54.7" x2="-25.7" y2="51.6" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <text x="0" y="98" font-size="13" text-anchor="middle" fill="var(--fig-ink)" font-weight="600">SSS</text>
+    <text x="0" y="117" font-size="12" text-anchor="middle" fill="var(--fig-ink)">三邊對應相等</text>
+  </g>
+  <g transform="translate(180 0)">
+    <polygon points="-32,77 34,77 -9,22" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="1" y1="73" x2="1" y2="81" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <line x1="-16" y1="49.2" x2="-23.4" y2="46.1" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <line x1="-17.6" y1="52.9" x2="-25" y2="49.8" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <path d="M -27,65 A 13,13 0 0 1 -19,77" fill="none" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="0" y="98" font-size="13" text-anchor="middle" fill="var(--fig-ink)" font-weight="600">SAS</text>
+    <text x="0" y="117" font-size="12" text-anchor="middle" fill="var(--fig-ink)">兩邊及其夾角</text>
+  </g>
+  <g transform="translate(300 0)">
+    <polygon points="-32,77 34,77 -9,22" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="1" y1="73" x2="1" y2="81" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <path d="M -27,65 A 13,13 0 0 1 -19,77" fill="none" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 21,77 A 13,13 0 0 1 26,66.8" fill="none" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 16,77 A 18,18 0 0 1 22.9,62.8" fill="none" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="0" y="98" font-size="13" text-anchor="middle" fill="var(--fig-ink)" font-weight="600">ASA</text>
+    <text x="0" y="117" font-size="12" text-anchor="middle" fill="var(--fig-ink)">兩角及其夾邊</text>
+  </g>
+  <g transform="translate(120 128)">
+    <polygon points="-32,77 34,77 -9,22" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="1" y1="73" x2="1" y2="81" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <path d="M -27,65 A 13,13 0 0 1 -19,77" fill="none" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M -1,32.2 A 13,13 0 0 1 -14,34" fill="none" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M 2.1,36.2 A 18,18 0 0 1 -15.9,38.6" fill="none" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="0" y="98" font-size="13" text-anchor="middle" fill="var(--fig-ink)" font-weight="600">AAS</text>
+    <text x="0" y="117" font-size="12" text-anchor="middle" fill="var(--fig-ink)">兩角及一對應邊</text>
+  </g>
+  <g transform="translate(240 128)">
+    <polygon points="-30,77 29,77 -30,22" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="-0.5" y1="73" x2="-0.5" y2="81" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <line x1="-1.8" y1="53.8" x2="3.7" y2="47.9" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <line x1="-4.7" y1="51.1" x2="0.8" y2="45.2" stroke="var(--fig-soft)" stroke-width="1.5"/>
+    <polyline points="-22,77 -22,69 -30,69" fill="none" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    <text x="0" y="98" font-size="13" text-anchor="middle" fill="var(--fig-ink)" font-weight="600">RHS</text>
+    <text x="0" y="117" font-size="12" text-anchor="middle" fill="var(--fig-ink)">直角、斜邊、一股</text>
+  </g>
+</svg>

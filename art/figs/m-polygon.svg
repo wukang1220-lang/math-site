@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 222" role="img">
+  <title>多邊形的內角和</title>
+  <polygon points="180,17 239,59.8 216.4,129.2" fill="var(--fig-a)" stroke="none" stroke-width="1.5" stroke-linejoin="round"/>
+  <polygon points="180,17 216.4,129.2 143.6,129.2" fill="var(--fig-c)" stroke="none" stroke-width="1.5" stroke-linejoin="round"/>
+  <polygon points="180,17 143.6,129.2 121,59.8" fill="var(--fig-a)" stroke="none" stroke-width="1.5" stroke-linejoin="round"/>
+  <polygon points="180,17 239,59.8 216.4,129.2 143.6,129.2 121,59.8" fill="none" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <line x1="180" y1="17" x2="216.4" y2="129.2" stroke="var(--fig-ink)" stroke-width="1.5"/>
+  <line x1="180" y1="17" x2="143.6" y2="129.2" stroke="var(--fig-ink)" stroke-width="1.5"/>
+  <text x="180" y="164" font-size="13" text-anchor="middle" fill="var(--fig-ink)">五邊形分成 3 個三角形：3 × 180° = 540°</text>
+  <text x="180" y="185" font-size="13" text-anchor="middle" fill="var(--fig-ink)">n 邊形內角和 = (n − 2) × 180°</text>
+  <text x="180" y="206" font-size="13" text-anchor="middle" fill="var(--fig-ink)">任何凸多邊形的外角和 = 360°</text>
+</svg>

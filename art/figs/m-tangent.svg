@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 170" role="img">
+  <title>切線垂直於切點的半徑，從同一圓外點引出的兩段切線等長。</title>
+  <line x1="180" y1="9" x2="180" y2="160" stroke="var(--fig-line)" stroke-width="1" stroke-linecap="round"/>
+  <g transform="translate(0 0)">
+    <text x="90" y="18" font-size="13" text-anchor="middle" fill="var(--fig-ink)">切線與半徑垂直</text>
+    <circle cx="78" cy="86" r="43" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5"/>
+    <line x1="78" y1="86" x2="121" y2="86" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="121" y1="34" x2="121" y2="137" stroke="var(--ic)" stroke-width="2.5" stroke-linecap="round"/>
+    <polyline points="113.5,86 113.5,78.5 121,78.5" fill="none" stroke="var(--fig-ink)" stroke-width="1.2" stroke-linejoin="round"/>
+    <circle cx="78" cy="86" r="2.5" fill="var(--fig-ink)"/>
+    <circle cx="121" cy="86" r="2.5" fill="var(--fig-ink)"/>
+    <text x="69" y="80" font-size="13" text-anchor="middle" fill="var(--fig-ink)">O</text>
+    <text x="133" y="91" font-size="13" text-anchor="middle" fill="var(--fig-ink)">T</text>
+    <text x="133" y="40" font-size="13" text-anchor="middle" fill="var(--fig-ink)">L</text>
+    <text x="90" y="157" font-size="13" text-anchor="middle" fill="var(--fig-ink)">OT ⊥ L</text>
+  </g>
+  <g transform="translate(180 0)">
+    <text x="90" y="18" font-size="13" text-anchor="middle" fill="var(--fig-ink)">圓外一點的兩條切線</text>
+    <circle cx="65" cy="87" r="42" fill="var(--fig-c)" stroke="var(--fig-ink)" stroke-width="1.5"/>
+    <polyline points="90.2,53.4 65,87 90.2,120.6" fill="none" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linejoin="round"/>
+    <polyline points="90.2,53.4 135,87 90.2,120.6" fill="none" stroke="var(--fig-ink)" stroke-width="1.8" stroke-linejoin="round"/>
+    <polyline points="85.7,59.4 91.7,63.9 96.2,57.9" fill="none" stroke="var(--fig-ink)" stroke-width="1.2" stroke-linejoin="round"/>
+    <polyline points="85.7,114.6 91.7,110.1 96.2,116.1" fill="none" stroke="var(--fig-ink)" stroke-width="1.2" stroke-linejoin="round"/>
+    <line x1="114.7" y1="67.4" x2="110.5" y2="73" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="110.5" y1="101" x2="114.7" y2="106.6" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="65" cy="87" r="2.5" fill="var(--fig-ink)"/>
+    <circle cx="135" cy="87" r="2.5" fill="var(--fig-ink)"/>
+    <circle cx="90.2" cy="53.4" r="2.5" fill="var(--fig-ink)"/>
+    <circle cx="90.2" cy="120.6" r="2.5" fill="var(--fig-ink)"/>
+    <text x="54" y="92" font-size="13" text-anchor="middle" fill="var(--fig-ink)">O</text>
+    <text x="148" y="92" font-size="13" text-anchor="middle" fill="var(--fig-ink)">P</text>
+    <text x="99" y="47" font-size="13" text-anchor="middle" fill="var(--fig-ink)">A</text>
+    <text x="99" y="136" font-size="13" text-anchor="middle" fill="var(--fig-ink)">B</text>
+    <text x="90" y="157" font-size="13" text-anchor="middle" fill="var(--fig-ink)">PA = PB</text>
+  </g>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 273" role="img">
+  <title>柱體與錐體</title>
+  <line x1="180" y1="9" x2="180" y2="223" stroke="var(--fig-line)" stroke-width="1" stroke-linecap="round"/>
+  <line x1="9" y1="114" x2="351" y2="114" stroke="var(--fig-line)" stroke-width="1" stroke-linecap="round"/>
+  <g transform="translate(0 0)">
+    <text x="90" y="18" font-size="13" text-anchor="middle" fill="var(--fig-ink)">三角柱</text>
+    <polygon points="35,54 81,58 81,100 35,96" fill="var(--fig-b)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    <polygon points="81,58 104,32 104,74 81,100" fill="var(--fig-c)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    <polygon points="35,54 81,58 104,32" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="35" y1="96" x2="104" y2="74" stroke="var(--fig-soft)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/>
+    <line x1="84" y1="43" x2="114" y2="37" stroke="var(--fig-soft)" stroke-width="1" stroke-linecap="round"/>
+    <line x1="93" y1="69" x2="108" y2="80" stroke="var(--fig-soft)" stroke-width="1" stroke-linecap="round"/>
+    <text x="119" y="41" font-size="13" text-anchor="start" fill="var(--fig-ink)">底面</text>
+    <text x="112" y="85" font-size="13" text-anchor="start" fill="var(--fig-ink)">側面</text>
+  </g>
+  <g transform="translate(180 0)">
+    <text x="90" y="18" font-size="13" text-anchor="middle" fill="var(--fig-ink)">圓柱</text>
+    <path d="M30 43 H100 V94 A35 11 0 0 1 30 94 Z" fill="var(--fig-c)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M30 94 A35 11 0 0 1 100 94" fill="none" stroke="var(--fig-soft)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 3"/>
+    <ellipse cx="65" cy="43" rx="35" ry="11" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5"/>
+    <line x1="104" y1="43" x2="117" y2="43" stroke="var(--fig-soft)" stroke-width="1" stroke-linecap="round"/>
+    <line x1="104" y1="94" x2="117" y2="94" stroke="var(--fig-soft)" stroke-width="1" stroke-linecap="round"/>
+    <line x1="114" y1="43" x2="114" y2="94" stroke="var(--ic)" stroke-width="1.8" stroke-linecap="round"/>
+    <text x="127" y="73" font-size="13" text-anchor="middle" fill="var(--fig-ink)">高</text>
+  </g>
+  <g transform="translate(0 0)">
+    <text x="90" y="135" font-size="13" text-anchor="middle" fill="var(--fig-ink)">四角錐</text>
+    <polygon points="67,147 35,199 85,210" fill="var(--fig-b)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    <polygon points="67,147 85,210 109,190" fill="var(--fig-c)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    <line x1="67" y1="147" x2="59" y2="179" stroke="var(--fig-soft)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="4 3"/>
+    <path d="M35 199 L59 179 L109 190" fill="none" stroke="var(--fig-soft)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 3"/>
+    <line x1="73" y1="147" x2="92" y2="147" stroke="var(--fig-soft)" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="67" cy="147" r="2.5" fill="var(--fig-ink)"/>
+    <text x="97" y="151" font-size="13" text-anchor="start" fill="var(--fig-ink)">頂點</text>
+  </g>
+  <g transform="translate(180 0)">
+    <text x="90" y="135" font-size="13" text-anchor="middle" fill="var(--fig-ink)">圓錐</text>
+    <path d="M65 147 L30.7 201.9 A35 11 0 1 0 99.3 201.9 Z" fill="var(--fig-b)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M30.7 201.9 A35 11 0 0 1 99.3 201.9" fill="none" stroke="var(--fig-soft)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 3"/>
+    <line x1="65" y1="147" x2="65" y2="204" stroke="var(--ic)" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="4 3"/>
+    <line x1="88" y1="210" x2="110" y2="210" stroke="var(--fig-soft)" stroke-width="1" stroke-linecap="round"/>
+    <text x="77" y="194" font-size="13" text-anchor="middle" fill="var(--fig-ink)">高</text>
+    <text x="116" y="214" font-size="13" text-anchor="start" fill="var(--fig-ink)">底面</text>
+  </g>
+  <text x="180" y="241" font-size="13" text-anchor="middle" fill="var(--fig-ink)">直角柱體積 = 底面積 × 高</text>
+  <text x="180" y="261" font-size="13" text-anchor="middle" fill="var(--fig-ink)">柱體、錐體的表面積：看展開圖</text>
+</svg>

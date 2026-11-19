@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 148" role="img">
+  <title>垂直與點到直線的距離</title>
+  <line x1="22" y1="98" x2="147" y2="98" stroke="var(--fig-ink)" stroke-width="1.5"/>
+  <line x1="77" y1="17" x2="77" y2="132" stroke="var(--fig-ink)" stroke-width="1.5"/>
+  <polyline points="77,90 85,90 85,98" fill="none" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <line x1="77" y1="45" x2="77" y2="98" stroke="var(--ic)" stroke-width="3"/>
+  <circle cx="77" cy="45" r="2.5" fill="var(--fig-ink)"/>
+  <text x="64" y="49" font-size="13" text-anchor="middle" fill="var(--fig-ink)">P</text>
+  <circle cx="77" cy="98" r="2.5" fill="var(--fig-ink)"/>
+  <text x="64" y="117" font-size="13" text-anchor="middle" fill="var(--fig-ink)">Q</text>
+  <text x="89" y="28" font-size="13" text-anchor="middle" fill="var(--fig-ink)">L</text>
+  <text x="158" y="102" font-size="13" text-anchor="middle" fill="var(--fig-ink)">M</text>
+  <text x="184" y="49" font-size="13" text-anchor="start" fill="var(--fig-ink)">L ⊥ M</text>
+  <text x="184" y="77" font-size="13" text-anchor="start" fill="var(--fig-ink)">Q 是垂足</text>
+  <text x="184" y="105" font-size="13" text-anchor="start" fill="var(--fig-ink)">PQ 的長是 P 到 M 的距離</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 235" role="img">
+  <title>尺規作圖：作線段的中垂線</title>
+  <path d="M 165.9,27.5 A 73,73 0 0 1 165.9,142.5" fill="none" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+  <path d="M 194.1,142.5 A 73,73 0 0 1 194.1,27.5" fill="none" stroke="var(--fig-soft)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+  <line x1="121" y1="85" x2="239" y2="85" stroke="var(--fig-ink)" stroke-width="1.5"/>
+  <line x1="180" y1="22" x2="180" y2="149" stroke="var(--ic)" stroke-width="2.4"/>
+  <circle cx="121" cy="85" r="2.5" fill="var(--fig-ink)"/>
+  <text x="107" y="89" font-size="13" text-anchor="middle" fill="var(--fig-ink)">A</text>
+  <circle cx="239" cy="85" r="2.5" fill="var(--fig-ink)"/>
+  <text x="253" y="89" font-size="13" text-anchor="middle" fill="var(--fig-ink)">B</text>
+  <circle cx="180" cy="42" r="2.5" fill="var(--fig-ink)"/>
+  <text x="201" y="39" font-size="13" text-anchor="middle" fill="var(--fig-ink)">P</text>
+  <circle cx="180" cy="128" r="2.5" fill="var(--fig-ink)"/>
+  <text x="201" y="139" font-size="13" text-anchor="middle" fill="var(--fig-ink)">Q</text>
+  <text x="51" y="176" font-size="13" text-anchor="start" fill="var(--fig-ink)">① 以 A 為圓心、大於 ½AB 為半徑畫弧</text>
+  <text x="51" y="197" font-size="13" text-anchor="start" fill="var(--fig-ink)">② 以 B 為圓心、同樣半徑畫弧，交於 P、Q</text>
+  <text x="51" y="218" font-size="13" text-anchor="start" fill="var(--fig-ink)">③ 連 PQ，即為 AB 的中垂線</text>
+</svg>

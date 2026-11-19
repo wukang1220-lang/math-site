@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 219" role="img">
+  <title>三角形的內角與外角</title>
+  <polygon points="140,28 72,137 246,137" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <line x1="246" y1="137" x2="303" y2="137" stroke="var(--fig-ink)" stroke-width="1.5"/>
+  <path d="M 151.9,40.2 A 17,17 0 0 1 131,42.4" fill="none" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 82.6,120 A 20,20 0 0 1 92,137" fill="none" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 227.9,118.4 A 26,26 0 0 1 272,137" fill="none" stroke="var(--ic)" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="140" cy="28" r="2.5" fill="var(--fig-ink)"/>
+  <text x="140" y="18" font-size="13" text-anchor="middle" fill="var(--fig-ink)">A</text>
+  <circle cx="72" cy="137" r="2.5" fill="var(--fig-ink)"/>
+  <text x="68" y="156" font-size="13" text-anchor="middle" fill="var(--fig-ink)">B</text>
+  <circle cx="246" cy="137" r="2.5" fill="var(--fig-ink)"/>
+  <text x="246" y="156" font-size="13" text-anchor="middle" fill="var(--fig-ink)">C</text>
+  <circle cx="303" cy="137" r="2.5" fill="var(--fig-ink)"/>
+  <text x="303" y="156" font-size="13" text-anchor="middle" fill="var(--fig-ink)">D</text>
+  <text x="180" y="182" font-size="13" text-anchor="middle" fill="var(--fig-ink)">∠A + ∠B + ∠ACB = 180°</text>
+  <text x="180" y="204" font-size="13" text-anchor="middle" fill="var(--fig-ink)">外角 ∠ACD = ∠A + ∠B</text>
+</svg>

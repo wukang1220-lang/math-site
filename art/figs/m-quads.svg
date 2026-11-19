@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 273" role="img">
+  <title>四邊形家族</title>
+  <polyline points="60,73 60,59 300,59 300,73" fill="none" stroke="var(--fig-line)" stroke-width="1.5" stroke-linejoin="round"/>
+  <line x1="180" y1="46" x2="180" y2="73" stroke="var(--fig-line)" stroke-width="1.5"/>
+  <polyline points="112,143 112,129 248,129 248,143" fill="none" stroke="var(--fig-line)" stroke-width="1.5" stroke-linejoin="round"/>
+  <line x1="180" y1="115" x2="180" y2="129" stroke="var(--fig-line)" stroke-width="1.5"/>
+  <polyline points="112,185 112,202 248,202 248,185" fill="none" stroke="var(--fig-line)" stroke-width="1.5" stroke-linejoin="round"/>
+  <line x1="180" y1="202" x2="180" y2="217" stroke="var(--fig-line)" stroke-width="1.5"/>
+  <rect x="124" y="12" width="112" height="34" rx="6" fill="var(--fig-paper)" stroke="var(--fig-line)" stroke-width="1"/>
+  <polygon points="145.5,25 160.5,21 168.5,31 152.5,37" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <text x="176" y="33.5" font-size="13" text-anchor="start" fill="var(--fig-ink)">四邊形</text>
+  <rect x="9" y="73" width="102" height="42" rx="6" fill="var(--fig-paper)" stroke="var(--fig-line)" stroke-width="1"/>
+  <polygon points="36,88 50,88 55,100 31,100" fill="var(--fig-b)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <text x="63" y="98.5" font-size="13" text-anchor="start" fill="var(--fig-ink)">梯形</text>
+  <rect x="121" y="73" width="118" height="42" rx="6" fill="var(--fig-paper)" stroke="var(--fig-line)" stroke-width="1"/>
+  <polygon points="136.5,81 155.5,81 150.5,93 131.5,93" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <text x="163.5" y="91.5" font-size="13" text-anchor="start" fill="var(--fig-ink)">平行四邊形</text>
+  <text x="180" y="107" font-size="12" text-anchor="middle" fill="var(--fig-soft)">兩組對邊平行</text>
+  <rect x="249" y="73" width="102" height="42" rx="6" fill="var(--fig-paper)" stroke="var(--fig-line)" stroke-width="1"/>
+  <polygon points="283,86 291,92 283,102 275,92" fill="var(--fig-c)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <text x="299" y="98.5" font-size="13" text-anchor="start" fill="var(--fig-ink)">箏形</text>
+  <rect x="53" y="143" width="118" height="42" rx="6" fill="var(--fig-paper)" stroke="var(--fig-line)" stroke-width="1"/>
+  <polygon points="77.5,151 99.5,151 99.5,163 77.5,163" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <text x="107.5" y="161.5" font-size="13" text-anchor="start" fill="var(--fig-ink)">長方形</text>
+  <text x="112" y="177" font-size="12" text-anchor="middle" fill="var(--fig-soft)">四個直角</text>
+  <rect x="189" y="143" width="118" height="42" rx="6" fill="var(--fig-paper)" stroke="var(--fig-line)" stroke-width="1"/>
+  <polygon points="231,150 243,157 231,164 219,157" fill="var(--fig-c)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <text x="251" y="161.5" font-size="13" text-anchor="start" fill="var(--fig-ink)">菱形</text>
+  <text x="248" y="177" font-size="12" text-anchor="middle" fill="var(--fig-soft)">四邊等長</text>
+  <rect x="105" y="217" width="150" height="44" rx="6" fill="var(--fig-paper)" stroke="var(--fig-line)" stroke-width="1"/>
+  <polygon points="149.5,224 163.5,224 163.5,238 149.5,238" fill="var(--fig-a)" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <text x="171.5" y="235.5" font-size="13" text-anchor="start" fill="var(--fig-ink)">正方形</text>
+  <text x="180" y="251" font-size="12" text-anchor="middle" fill="var(--fig-soft)">四邊等長且四個直角</text>
+</svg>

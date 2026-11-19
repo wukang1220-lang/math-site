@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 222" role="img">
+  <title>平行線的截角性質</title>
+  <line x1="36" y1="53" x2="316" y2="53" stroke="var(--fig-ink)" stroke-width="1.5"/>
+  <line x1="36" y1="111" x2="316" y2="111" stroke="var(--fig-ink)" stroke-width="1.5"/>
+  <line x1="228.9" y1="16" x2="141.2" y2="145" stroke="var(--fig-ink)" stroke-width="1.5"/>
+  <text x="331" y="57" font-size="13" text-anchor="middle" fill="var(--fig-ink)">L₁</text>
+  <text x="331" y="115" font-size="13" text-anchor="middle" fill="var(--fig-ink)">L₂</text>
+  <path d="M 173.8,96.9 A 17,17 0 0 1 181.3,111" fill="none" stroke="var(--ic)" stroke-width="1.5" stroke-linecap="round"/>
+  <polyline points="91,49 98,53 91,57" fill="none" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <polyline points="91,107 98,111 91,115" fill="none" stroke="var(--fig-ink)" stroke-width="1.5" stroke-linejoin="round"/>
+  <text x="229.7" y="44" font-size="13" text-anchor="middle" fill="var(--fig-ink)">1</text>
+  <text x="189.7" y="41" font-size="13" text-anchor="middle" fill="var(--fig-ink)">2</text>
+  <text x="177.7" y="70" font-size="13" text-anchor="middle" fill="var(--fig-ink)">3</text>
+  <text x="217.7" y="74" font-size="13" text-anchor="middle" fill="var(--fig-ink)">4</text>
+  <text x="190.3" y="102" font-size="13" text-anchor="middle" fill="var(--fig-ink)">5</text>
+  <text x="150.3" y="99" font-size="13" text-anchor="middle" fill="var(--fig-ink)">6</text>
+  <text x="138.3" y="128" font-size="13" text-anchor="middle" fill="var(--fig-ink)">7</text>
+  <text x="178.3" y="132" font-size="13" text-anchor="middle" fill="var(--fig-ink)">8</text>
+  <text x="79" y="167" font-size="13" text-anchor="start" fill="var(--fig-ink)">同位角相等：∠1 = ∠5</text>
+  <text x="79" y="187" font-size="13" text-anchor="start" fill="var(--fig-ink)">內錯角相等：∠3 = ∠5</text>
+  <text x="79" y="207" font-size="13" text-anchor="start" fill="var(--fig-ink)">同側內角互補：∠4 + ∠5 = 180°</text>
+</svg>
